@@ -15,15 +15,20 @@
 		"react"
 	],
 	"rules": {
-		// "no-tabs": ["error", { "allowIndentationTabs": true }],
 		"indent": ["error", "tab"],
-		// "indent": [4, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
 		"no-tabs": 0,
 		"react/jsx-indent" : ["error", "tab"],
 		"react/jsx-indent-props" : ["error", "tab"],
-		"react/jsx-one-expression-per-line": 0
-		// "react/prop-types": 0
-		// "react/jsx-indent": [4, "tab"]
-		// "react/jsx-indent-props": [4, "tab"]
+		"react/jsx-one-expression-per-line": 0,
+		"jsx-a11y/label-has-associated-control": ["error", {
+			"required": {
+				"some": ["nesting", "id"]
+				}
+			}],
+		"jsx-a11y/label-has-for": ["error", {
+			"required": {
+			"some": ["nesting", "id"]
+			}
+		}]
 	}
 }
