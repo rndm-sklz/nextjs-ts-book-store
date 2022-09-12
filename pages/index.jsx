@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/home.module.css';
 import PageLayout from '../components/PageLayout';
+import FilterSelect from '../components/FilterSelect';
+import SortSelect from '../components/SortSelect';
+import ToggleView from '../components/ToggleView';
+import BooksList from '../components/BooksList';
 
 function Home({ books }) {
 	return (
 		<PageLayout title="Home">
-			<div className={styles.grid}>
-				{books.map((book) => (
-					<div key={book.id} className={styles.card}>
-						<h3>{book.title}</h3>
-						<p>{book.author}</p>
-						<p>$ {book.price}</p>
-						<p>
-							<button type="button">Buy</button>
-						</p>
-					</div>
-				))}
+			<div className={styles.filtersWrapper}>
+				<FilterSelect />
+				<SortSelect />
+				<ToggleView />
+			</div>
+			<div>
+				<BooksList books={books} />
 			</div>
 		</PageLayout>
 	);
@@ -43,14 +43,6 @@ Home.propTypes = {
 			price: PropTypes.string,
 		}).isRequired,
 	)).isRequired,
-	book: PropTypes.shape({
-		id: PropTypes.number,
-		author: PropTypes.string,
-		imageLink: PropTypes.string,
-		title: PropTypes.string,
-		year: PropTypes.number,
-		price: PropTypes.string,
-	}).isRequired,
 };
 
 export default Home;
