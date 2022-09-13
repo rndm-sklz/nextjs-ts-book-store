@@ -20,8 +20,9 @@ export default function BookCard({ book }) {
 				<p className={styles.price}>$ {book.price}</p>
 				<div className={styles.buyBlock}>
 					<button type="button" className={styles.buyBtn}>Buy</button>
-					<label htmlFor="bookCount" className={styles.label}>Quantity:</label>
-					<input type="number" id="bookCount" min={1} max={99} maxLength="2" className={styles.buyInput} />
+					<label htmlFor="bookCount" className={styles.buyLabel}>Quantity:</label>
+					<input type="number" id="bookCount" min={1} max={99} maxLength={2} className={styles.buyInput} />
+					<span>pcs</span>
 				</div>
 			</div>
 		</div>
@@ -36,6 +37,6 @@ BookCard.propTypes = {
 		cover: PropTypes.string,
 		title: PropTypes.string,
 		year: PropTypes.number,
-		price: PropTypes.string,
+		price: PropTypes.number,
 	}).isRequired,
 };

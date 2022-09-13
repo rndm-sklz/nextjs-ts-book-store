@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BookCard from './BookCard';
 import styles from '../styles/home.module.css';
+import BookLine from './BookLine';
 
 export default function BooksList({ books }) {
-	return (
-		<div className={styles.grid}>
+	const [isCardView, setCardView] = useState(false);
+
+	return isCardView ? (
+		<div className={styles.cardView}>
 			{books.map((book) => (
 				<BookCard book={book} key={book.id} />
+			))}
+		</div>
+	) : (
+		<div className={styles.listView}>
+			{books.map((book) => (
+				<BookLine book={book} key={book.id} />
 			))}
 		</div>
 	);

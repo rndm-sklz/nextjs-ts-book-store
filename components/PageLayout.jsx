@@ -39,6 +39,11 @@ export default function PageLayout({ children, title }) {
 				<div className={styles.empty} />
 			</header>
 			<main>{children}</main>
+			<footer className={styles.footer}>
+				<a href="https://github.com/rndm-sklz/nextjs-book-store" aria-label="github link" className={styles.githubLink}><img src="/img/github-logo.svg" alt="GitHub logo" width={32} height={32} /></a>
+				<h2>ⓒ kinoplan.tech</h2>
+				<div className={styles.year}>2022</div>
+			</footer>
 		</>
 	);
 }

@@ -6,6 +6,7 @@ import FilterSelect from '../components/FilterSelect';
 import SortSelect from '../components/SortSelect';
 import ToggleView from '../components/ToggleView';
 import BooksList from '../components/BooksList';
+import ShopCart from '../components/ShopCart';
 
 function Home({ books }) {
 	return (
@@ -14,8 +15,9 @@ function Home({ books }) {
 				<FilterSelect />
 				<SortSelect />
 				<ToggleView />
+				<ShopCart />
 			</div>
-			<div>
+			<div className={styles.booksWrapper}>
 				<BooksList books={books} />
 			</div>
 		</PageLayout>

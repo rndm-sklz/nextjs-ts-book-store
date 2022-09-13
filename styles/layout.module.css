@@ -36,3 +36,27 @@
 	height: 39px;
 	margin-right: 20px;
 }
+
+.footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	width: 100%;
+	background-color: rgb(189, 255, 198);
+	border: .5px solid rgb(208, 208, 208);
+}
+
+.year {
+	width: 40px;
+	margin-right: 20px;
+}
+
+.githubLink {
+	margin-left: 20px;
+}
+
+.footer h2 {
+	font-size: 16px;
+}

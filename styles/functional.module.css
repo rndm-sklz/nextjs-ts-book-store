@@ -1,0 +1,68 @@
+.label {
+	margin-right: 10px;
+}
+
+.select {
+	width: 150px;
+	height: 30px;
+}
+
+.wrapperBtn {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 5px;
+	margin-right: auto;
+}
+
+.title {
+	margin-right: 10px;
+}
+
+.btn {
+	height: 30px;
+	width: 50px;
+	border-radius: 3px;
+	cursor: pointer;
+	border: 1px dashed rgb(117, 117, 117);
+	transition: all 0.6s;
+}
+
+.btn:hover {
+	border: 1px solid;
+}
+
+.listViewBtn {
+	background: url('../public/img/list-view.svg') no-repeat center;
+}
+
+.cardViewBtn {
+	background: url('../public/img/card-view.svg') no-repeat center;
+}
+
+.cartBlock {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 80px;
+}
+
+.cartBlock span {
+	margin-right: 10px;
+}
+
+.cartBtn {
+	height: 30px;
+	width: 50px;
+	border-radius: 3px;
+	cursor: pointer;
+	border: 1px solid rgb(117, 117, 117);
+	background: url('../public/img/cart.svg') no-repeat center;
+	background-color: rgb(189, 255, 198);
+	transition: background-color 0.6s, transform 0.5s;
+}
+
+.cartBtn:hover {
+	background-color: rgb(108, 253, 127);
+	transform: scale(110%);
+}

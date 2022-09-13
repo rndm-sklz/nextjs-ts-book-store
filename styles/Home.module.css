@@ -1,4 +1,4 @@
-.grid {
+.cardView {
 	display: flex;
 	align-items:stretch	;
 	justify-content: center;
@@ -15,7 +15,7 @@
 	text-align: left;
 	color: inherit;
 	text-decoration: none;
-	border: 1px solid #eaeaea;
+	border: 1px solid rgb(208, 208, 208);
 	border-radius: 10px;
 	transition: color 0.15s ease, border-color 0.15s ease;
 	max-width: 300px;
@@ -25,7 +25,8 @@
 	display: flex;
 	justify-content: flex-start;
 	gap: 30px;
-	margin-left: 30px;
+	flex-wrap: wrap;
+	margin-left: 80px;
 	margin-top: 20px;
 }
 
@@ -35,6 +36,7 @@
 
 .price {
 	font-weight: 600;
+	font-size: 1.17em;
 }
 
 .cardDecription {
@@ -52,10 +54,69 @@
 	height: 69px;
 }
 
+.buyBlock {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.buyLabel {
+	margin-right: 10px;
+	font-size: .84em;
+}
+
+.buyInput {
+	height: 32px;
+	width: 50px;
+	text-align: center;
+	font-family: inherit;
+}
+
 .buyBtn {
 	width: 80px;
 	height: 32px;
 	background-color: rgb(189, 255, 198);
 	border: .5px solid rgb(117, 117, 117);
 	border-radius: 5px;
+	cursor: pointer;
+	margin-right: auto;
+	transition: background-color 0.6s, transform 0.5s;
+}
+
+.buyBtn:hover {
+	background-color: rgb(108, 253, 127);
+	transform: scale(110%);
+}
+
+.buyBlock span {
+	font-size: .84em;
+	margin-left: 5px;
+}
+
+/* List view */
+
+.booksWrapper {
+	display: flex;
+	justify-content: center;
+	max-width: auto;
+}
+
+.listView {
+	max-width: 1440px;
+	min-width: 320px;
+	margin: 0 auto;
+	/* display: grid; */
+
+	/* flex-direction: column;
+	align-items: center;
+	justify-content: stretch;
+	width: 100%; */
+}
+
+.lineItem {
+	display: flex;
+}
+
+.lineDecription {
+	display: flex;
 }
