@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import BookCard from './BookCard';
 import styles from '../styles/home.module.css';
 import BookLine from './BookLine';
 
-export default function BooksList({ books }) {
-	const [isCardView, setCardView] = useState(false);
-
+export default function BooksList({ books, isCardView }) {
 	return isCardView ? (
 		<div className={styles.cardView}>
 			{books.map((book) => (
@@ -41,4 +39,5 @@ BooksList.propTypes = {
 		year: PropTypes.number,
 		price: PropTypes.string,
 	}).isRequired,
+	isCardView: PropTypes.bool.isRequired,
 };

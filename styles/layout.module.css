@@ -6,13 +6,13 @@
 	height: 60px;
 	width: 100%;
 	background-color: rgb(189, 255, 198);
-	border: .5px solid rgb(208, 208, 208);
+	border: 0.5px solid rgb(208, 208, 208);
 }
 
 .logo {
 	width: 40px;
 	height: 39px;
-	margin-left: 20px;
+	margin-left: 80px;
 }
 
 .title {
@@ -45,16 +45,16 @@
 	height: 60px;
 	width: 100%;
 	background-color: rgb(189, 255, 198);
-	border: .5px solid rgb(208, 208, 208);
+	border: 0.5px solid rgb(208, 208, 208);
 }
 
 .year {
 	width: 40px;
-	margin-right: 20px;
+	margin-right: 80px;
 }
 
 .githubLink {
-	margin-left: 20px;
+	margin-left: 80px;
 }
 
 .footer h2 {

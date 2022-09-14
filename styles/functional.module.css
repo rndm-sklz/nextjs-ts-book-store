@@ -25,19 +25,23 @@
 	border-radius: 3px;
 	cursor: pointer;
 	border: 1px dashed rgb(117, 117, 117);
-	transition: all 0.6s;
+	transition: border 0.6s;
 }
 
 .btn:hover {
 	border: 1px solid;
 }
 
+.cardViewBtn {
+	background: url('../public/img/card-view.svg') no-repeat center;
+}
+
 .listViewBtn {
 	background: url('../public/img/list-view.svg') no-repeat center;
 }
 
-.cardViewBtn {
-	background: url('../public/img/card-view.svg') no-repeat center;
+.btnActive {
+	background-color: rgb(108, 253, 127);
 }
 
 .cartBlock {

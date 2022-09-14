@@ -9,10 +9,7 @@ export default function PageLayout({ children, title }) {
 	return (
 		<>
 			<Head>
-				<title>
-					PEPEBOOKS |
-					{title}
-				</title>
+				<title>PEPEBOOKS |{title}</title>
 				<meta name="keywords" content="books,books store" />
 				<meta name="description" content="this is books store PEPEBOOKS" />
 				<meta charSet="utf-8" />
@@ -40,7 +37,18 @@ export default function PageLayout({ children, title }) {
 			</header>
 			<main>{children}</main>
 			<footer className={styles.footer}>
-				<a href="https://github.com/rndm-sklz/nextjs-book-store" aria-label="github link" className={styles.githubLink}><img src="/img/github-logo.svg" alt="GitHub logo" width={32} height={32} /></a>
+				<a
+					href="https://github.com/rndm-sklz/nextjs-book-store"
+					aria-label="github link"
+					className={styles.githubLink}
+				>
+					<img
+						src="/img/github-logo.svg"
+						alt="GitHub logo"
+						width={32}
+						height={32}
+					/>
+				</a>
 				<h2>ⓒ kinoplan.tech</h2>
 				<div className={styles.year}>2022</div>
 			</footer>

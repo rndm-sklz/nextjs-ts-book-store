@@ -6,13 +6,15 @@ import styles from '../styles/home.module.css';
 export default function BookLine({ book }) {
 	return (
 		<div className={styles.lineItem}>
-			<Image
-				priority
-				src={book.cover}
-				width={30}
-				height={45}
-				alt={book.title}
-			/>
+			<div className={styles.coverLine}>
+				<Image
+					priority
+					src={book.cover}
+					width={30}
+					height={45}
+					alt={book.title}
+				/>
+			</div>
 			<div className={styles.lineDecription}>
 				<h3 className={styles.lineTitle}>{book.title}</h3>
 				<p className={styles.lineAuthor}>{book.author}</p>
@@ -21,11 +23,13 @@ export default function BookLine({ book }) {
 				<div className={styles.linePcsBlock}>
 					<span>Quantity:</span>
 					<button type="button">-</button>
-					<input type="number" />
+					<input type="text" />
 					<button type="button">+</button>
 					<span>pcs</span>
 				</div>
-				<button type="button" className={styles.lineBuyBtn}>Buy</button>
+				<button type="button" className={styles.lineBuyBtn}>
+					Buy
+				</button>
 			</div>
 		</div>
 	);

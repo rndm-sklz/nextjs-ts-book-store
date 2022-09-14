@@ -14,3 +14,31 @@ export default function ShopCart() {
 		</Link>
 	);
 }
+
+// import React, { useState } from 'react';
+// import Popover from 'antd/es/popover';
+// import 'antd/dist/antd.css';
+// import styles from '../styles/functional.module.css';
+
+// export default function ShopCart() {
+// 	const [open, setOpen] = useState(false);
+
+// 	const hide = () => {
+// 		setOpen(false);
+// 	};
+
+// 	const handleOpenChange = (newOpen) => {
+// 		setOpen(newOpen);
+// 	};
+// 	return (
+// 		<Popover
+// 			content={<a onClick={hide}>Close</a>}
+// 			title="Title"
+// 			trigger="click"
+// 			open={open}
+// 			onOpenChange={handleOpenChange}
+// 		>
+// 			<button type="button" className={styles.cartBtn} aria-label="cart" />
+// 		</Popover>
+// 	);
+// }

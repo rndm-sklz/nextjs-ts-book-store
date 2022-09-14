@@ -1,6 +1,6 @@
 .cardView {
 	display: flex;
-	align-items:stretch	;
+	align-items: stretch;
 	justify-content: center;
 	flex-wrap: wrap;
 	max-width: auto;
@@ -31,7 +31,7 @@
 }
 
 .genre {
-	font-size: .6em;
+	font-size: 0.6em;
 }
 
 .price {
@@ -62,7 +62,7 @@
 
 .buyLabel {
 	margin-right: 10px;
-	font-size: .84em;
+	font-size: 0.84em;
 }
 
 .buyInput {
@@ -76,7 +76,7 @@
 	width: 80px;
 	height: 32px;
 	background-color: rgb(189, 255, 198);
-	border: .5px solid rgb(117, 117, 117);
+	border: 0.5px solid rgb(117, 117, 117);
 	border-radius: 5px;
 	cursor: pointer;
 	margin-right: auto;
@@ -89,7 +89,7 @@
 }
 
 .buyBlock span {
-	font-size: .84em;
+	font-size: 0.84em;
 	margin-left: 5px;
 }
 
@@ -105,18 +105,84 @@
 	max-width: 1440px;
 	min-width: 320px;
 	margin: 0 auto;
-	/* display: grid; */
-
-	/* flex-direction: column;
-	align-items: center;
-	justify-content: stretch;
-	width: 100%; */
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .lineItem {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto 5fr;
+	gap: 10px;
+	margin: -1px 80px 0px 80px;
+	border: 1px solid rgb(208, 208, 208);
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .lineDecription {
+	display: grid;
+	grid-template-columns: 4fr 1.5fr 1fr 0.5fr 1.5fr 0.5fr;
+	align-items: center;
+	row-gap: 0;
+	column-gap: 10px;
+}
+
+.coverLine {
 	display: flex;
+	align-items: center;
+}
+
+.lineTitle {
+	font-size: 16px;
+}
+
+.lineAuthor {
+	font-size: 12px;
+}
+
+.lineGenre {
+	font-size: 12px;
+}
+
+.linePrice {
+	font-weight: 600;
+}
+
+.linePcsBlock {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 5px;
+	font-size: 12px;
+}
+
+.linePcsBlock input {
+	height: 32px;
+	width: 32px;
+	text-align: center;
+	font-family: inherit;
+}
+
+.linePcsBlock button {
+	border-radius: 50%;
+	background-color: rgb(189, 255, 198);
+	border: 0.5px solid rgb(117, 117, 117);
+	width: 24px;
+	height: 24px;
+}
+
+.lineBuyBtn {
+	width: 80px;
+	height: 32px;
+	margin-left: auto;
+	background-color: rgb(189, 255, 198);
+	border: 0.5px solid rgb(117, 117, 117);
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.6s, transform 0.5s;
+}
+
+.lineBuyBtn:hover {
+	background-color: rgb(108, 253, 127);
+	transform: scale(110%);
 }
