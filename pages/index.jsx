@@ -10,6 +10,7 @@ import ShopCart from '../components/ShopCart';
 
 function Home({ books }) {
 	const [isCardView, setIsCardView] = useState(true);
+	const [countPcs, setCountPcs] = useState(5);
 	return (
 		<PageLayout title="Home">
 			<div className={styles.filtersWrapper}>
@@ -19,7 +20,7 @@ function Home({ books }) {
 				<ShopCart />
 			</div>
 			<div className={styles.booksWrapper}>
-				<BooksList books={books} isCardView={isCardView} />
+				<BooksList books={books} isCardView={isCardView} countPcs={countPcs} />
 			</div>
 		</PageLayout>
 	);
