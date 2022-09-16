@@ -7,22 +7,25 @@ import SortSelect from '../components/SortSelect';
 import ToggleView from '../components/ToggleView';
 import BooksList from '../components/BooksList';
 import ShopCart from '../components/ShopCart';
+import Context from '../components/context/context';
 
-function Home({ books }) {
+export default function Home({ books }) {
 	const [isCardView, setIsCardView] = useState(true);
 	const [countPcs, setCountPcs] = useState(5);
 	return (
-		<PageLayout title="Home">
-			<div className={styles.filtersWrapper}>
-				<FilterSelect />
-				<SortSelect />
-				<ToggleView setView={setIsCardView} isCardView={isCardView} />
-				<ShopCart />
-			</div>
-			<div className={styles.booksWrapper}>
-				<BooksList books={books} isCardView={isCardView} countPcs={countPcs} />
-			</div>
-		</PageLayout>
+		<Context.Provider value={{ countPcs, setCountPcs }}>
+			<PageLayout title="Home">
+				<div className={styles.filtersWrapper}>
+					<FilterSelect />
+					<SortSelect />
+					<ToggleView setView={setIsCardView} isCardView={isCardView} />
+					<ShopCart />
+				</div>
+				<div className={styles.booksWrapper}>
+					<BooksList books={books} isCardView={isCardView} countPcs={countPcs} />
+				</div>
+			</PageLayout>
+		</Context.Provider>
 	);
 }
 
@@ -52,5 +55,3 @@ Home.propTypes = {
 		),
 	).isRequired,
 };
-
-export default Home;

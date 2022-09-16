@@ -5,7 +5,7 @@ import { Popover } from 'antd';
 import cartStyles from '../styles/cartPopover.module.css';
 
 export default function CartPopover({
-	hide, open, handleOpenChange, books, children,
+	hide, open, handleOpenChange, /* books */ children,
 }) {
 	return (
 		<Popover
@@ -45,7 +45,7 @@ export default function CartPopover({
 }
 
 CartPopover.propTypes = {
-	books: PropTypes.arrayOf(PropTypes.shape(
+	/* books: PropTypes.arrayOf(PropTypes.shape(
 		PropTypes.shape({
 			id: PropTypes.number,
 			author: PropTypes.string,
@@ -54,7 +54,7 @@ CartPopover.propTypes = {
 			year: PropTypes.number,
 			price: PropTypes.string,
 		}).isRequired,
-	)).isRequired,
+	)).isRequired, */
 	children: PropTypes.node.isRequired,
 	open: PropTypes.bool.isRequired,
 	hide: PropTypes.func.isRequired,

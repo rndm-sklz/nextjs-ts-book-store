@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
+import Context from './context/context';
 
-export default function BookCard({ book, countPcs, setCountPcs }) {
-	// function handlerInputPcs() {
-	// 	setCountPcs(countPcs)
-	// }
+export default function BookCard({ book }) {
+	const [pcsBookCard, setPcsBookCard] = useState(0);
+	const { countPcs, setCountPcs } = useContext(Context);
+	function handlerInputPcs() {
+		setCountPcs(countPcs);
+	}
 	return (
 		<div className={styles.card}>
 			<Image
@@ -31,9 +34,9 @@ export default function BookCard({ book, countPcs, setCountPcs }) {
 						max={99}
 						maxLength={2}
 						className={styles.buyInput}
-						defaultValue={0}
-						value={countPcs}
-						// onChange={handlerInputPcs}
+						// defaultValue={0}
+						value={pcsBookCard}
+						onChange={(e) => setPcsBookCard(e.target.value)}
 					/>
 					<span>pcs</span>
 				</div>
@@ -52,6 +55,6 @@ BookCard.propTypes = {
 		year: PropTypes.number,
 		price: PropTypes.number,
 	}).isRequired,
-	countPcs: PropTypes.number.isRequired,
-	setCountPcs: PropTypes.func.isRequired,
+	// countPcs: PropTypes.number.isRequired,
+	// setCountPcs: PropTypes.func.isRequired,
 };

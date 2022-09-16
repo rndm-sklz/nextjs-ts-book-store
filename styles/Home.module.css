@@ -156,6 +156,12 @@
 	font-size: 12px;
 }
 
+.linePcsBlock input::-webkit-outer-spin-button,
+.linePcsBlock input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 .linePcsBlock input {
 	height: 32px;
 	width: 32px;
