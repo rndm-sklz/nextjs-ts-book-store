@@ -60,6 +60,35 @@
 	align-items: center;
 }
 
+.cardPcsBlock {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 5px;
+	font-size: 12px;
+}
+
+.cardPcsBlock input::-webkit-outer-spin-button,
+.cardPcsBlock input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.cardPcsBlock input {
+	height: 32px;
+	width: 32px;
+	text-align: center;
+	font-family: inherit;
+}
+
+.cardPcsBlock button {
+	border-radius: 50%;
+	background-color: rgb(189, 255, 198);
+	border: 0.5px solid rgb(117, 117, 117);
+	width: 24px;
+	height: 24px;
+}
+
 .buyLabel {
 	margin-right: 10px;
 	font-size: 0.84em;
@@ -72,14 +101,14 @@
 	font-family: inherit;
 }
 
-.buyBtn {
+.buyBlock .buyBtn {
 	width: 80px;
 	height: 32px;
 	background-color: rgb(189, 255, 198);
 	border: 0.5px solid rgb(117, 117, 117);
 	border-radius: 5px;
 	cursor: pointer;
-	margin-right: auto;
+	/* margin-right: auto; */
 	transition: background-color 0.6s, transform 0.5s;
 }
 

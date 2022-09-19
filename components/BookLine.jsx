@@ -1,12 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
-import Context from './context/context';
 
-export default function BookLine({ book }) {
-	const [pcsBookList, setPcsBookList] = useState();
-	const { countPcs, setCountPcs } = useContext(Context);
+export default function BookLine({ book, addBook }) {
+	const [pcsBookList, setPcsBookList] = useState(0);
+	// const [selectedBooks, setSelectedBooks] = useState([]);
+
+	function handlerBuyBook() {
+		if (pcsBookList > 0) {
+			book.pcs = pcsBookList;
+			addBook(book);
+		}
+	}
 
 	function decr() {
 		// eslint-disable-next-line max-len
@@ -27,13 +33,11 @@ export default function BookLine({ book }) {
 		}
 	}
 
-	console.log(typeof pcsBookList);
-
 	return (
 		<div className={styles.lineItem}>
 			<div className={styles.coverLine}>
 				<Image
-					priorityv
+					priority
 					src={book.cover}
 					width={30}
 					height={45}
@@ -62,7 +66,7 @@ export default function BookLine({ book }) {
 					<button type="button" onClick={incr}>+</button>
 					<span>pcs</span>
 				</div>
-				<button type="button" className={styles.lineBuyBtn}>
+				<button type="button" className={styles.lineBuyBtn} onClick={handlerBuyBook}>
 					Buy
 				</button>
 			</div>
@@ -79,5 +83,6 @@ BookLine.propTypes = {
 		title: PropTypes.string,
 		year: PropTypes.number,
 		price: PropTypes.number,
+		pcs: PropTypes.number,
 	}).isRequired,
 };

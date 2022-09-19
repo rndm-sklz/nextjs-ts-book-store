@@ -4,17 +4,17 @@ import BookCard from './BookCard';
 import styles from '../styles/home.module.css';
 import BookLine from './BookLine';
 
-export default function BooksList({ books, isCardView }) {
+export default function BooksList({ books, isCardView, addBook }) {
 	return isCardView ? (
 		<div className={styles.cardView}>
 			{books.map((book) => (
-				<BookCard book={book} key={book.id} />
+				<BookCard book={book} key={book.id} addBook={addBook} />
 			))}
 		</div>
 	) : (
 		<div className={styles.listView}>
 			{books.map((book) => (
-				<BookLine book={book} key={book.id} />
+				<BookLine book={book} key={book.id} addBook={addBook} />
 			))}
 		</div>
 	);
