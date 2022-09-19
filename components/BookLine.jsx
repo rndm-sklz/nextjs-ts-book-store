@@ -5,21 +5,22 @@ import styles from '../styles/home.module.css';
 import Context from './context/context';
 
 export default function BookLine({ book }) {
-	const [pcsBookList, setPcsBookList] = useState(0);
+	const [pcsBookList, setPcsBookList] = useState();
 	const { countPcs, setCountPcs } = useContext(Context);
 
 	function decr() {
-		setPcsBookList((prevPcsBookList) => +prevPcsBookList - 1);
+		// eslint-disable-next-line max-len
+		setPcsBookList((prevPcsBookList) => (prevPcsBookList >= 1 && prevPcsBookList <= 99 ? +prevPcsBookList - 1 : prevPcsBookList));
 	}
 
 	function incr() {
-		setPcsBookList((prevPcsBookList) => +prevPcsBookList + 1);
+		// eslint-disable-next-line max-len
+		setPcsBookList((prevPcsBookList) => (prevPcsBookList >= 0 && prevPcsBookList <= 98 ? +prevPcsBookList + 1 : prevPcsBookList));
 	}
 
 	function userInput(e) {
 		const numerableValue = +e.target.value;
-
-		if (typeof numerableValue === 'number') {
+		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			setPcsBookList(numerableValue);
 		} else {
 			setPcsBookList((prevPcsBookList) => prevPcsBookList);
@@ -48,13 +49,15 @@ export default function BookLine({ book }) {
 					<span>Quantity:</span>
 					<button type="button" onClick={decr}>-</button>
 					<input
-						type="number"
-						min={1}
-						max={10}
+						type="text"
+						minLength={1}
+						maxLength={2}
 						required
 						// defaultValue={pcsBookList}
 						value={pcsBookList}
 						onChange={userInput}
+						// onFocus={() => setPcsBookList('')}
+						placeholder="0"
 					/>
 					<button type="button" onClick={incr}>+</button>
 					<span>pcs</span>
