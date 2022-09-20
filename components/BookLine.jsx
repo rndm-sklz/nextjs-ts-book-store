@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
 
-export default function BookLine({ book, addBook }) {
+export default function BookLine({ book, setSelectedBooks }) {
 	const [pcsBookList, setPcsBookList] = useState(0);
-	// const [selectedBooks, setSelectedBooks] = useState([]);
-
+	// console.log(setSelectedBooks);
 	function handlerBuyBook() {
 		if (pcsBookList > 0) {
-			book.pcs = pcsBookList;
-			addBook(book);
+			const cloneBooks = { ...book, pcs: pcsBookList };
+			setSelectedBooks((prev) => prev
+				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
+				.concat([cloneBooks]));
 		}
 	}
 
@@ -85,4 +86,5 @@ BookLine.propTypes = {
 		price: PropTypes.number,
 		pcs: PropTypes.number,
 	}).isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

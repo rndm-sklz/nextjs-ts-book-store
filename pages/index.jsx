@@ -7,44 +7,27 @@ import SortSelect from '../components/SortSelect';
 import ToggleView from '../components/ToggleView';
 import BooksList from '../components/BooksList';
 import ShopCart from '../components/ShopCart';
-import Context from '../components/context/context';
 
-export default function Home({ books }) {
+export default function Home({ books, setSelectedBooks }) {
 	const [isCardView, setIsCardView] = useState(true);
-	// const [countPcs, setCountPcs] = useState(5);
-	const [selectedBooks, setSelectedBooks] = useState([
-		{ id: 1 },
-		{ id: 4 },
-		{ id: 5 },
-	]);
-	console.log(selectedBooks);
-
-	function buyBook(book) {
-		// eslint-disable-next-line max-len
-		const addSelectedBooks = selectedBooks
-			.filter((selectedBook) => selectedBook.id !== book.id)
-			.concat([{ book }]);
-
-		// console.log(addSelectedBooks);
-
-		setSelectedBooks(addSelectedBooks);
-		// console.log(selectedBooks);
-		// console.log(selectedBooks);
-	}
+	// function buyBook(book) {
+	// 	// eslint-disable-next-line max-len
+	// 	setSelectedBooks((prev) => prev
+	// .filter((selectedBook) => selectedBook.id !== book.id)
+	// .concat([book]));
+	// }
 	return (
-		<Context.Provider value={{}}>
-			<PageLayout title="Home">
-				<div className={styles.filtersWrapper}>
-					<FilterSelect />
-					<SortSelect />
-					<ToggleView setView={setIsCardView} isCardView={isCardView} />
-					<ShopCart />
-				</div>
-				<div className={styles.booksWrapper}>
-					<BooksList books={books} isCardView={isCardView} addBook={buyBook} />
-				</div>
-			</PageLayout>
-		</Context.Provider>
+		<PageLayout title="Home">
+			<div className={styles.filtersWrapper}>
+				<FilterSelect />
+				<SortSelect />
+				<ToggleView setView={setIsCardView} isCardView={isCardView} />
+				<ShopCart />
+			</div>
+			<div className={styles.booksWrapper}>
+				<BooksList books={books} isCardView={isCardView} setSelectedBooks={setSelectedBooks} />
+			</div>
+		</PageLayout>
 	);
 }
 
@@ -73,4 +56,5 @@ Home.propTypes = {
 			}).isRequired,
 		),
 	).isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

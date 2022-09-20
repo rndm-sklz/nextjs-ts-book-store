@@ -3,17 +3,32 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, setSelectedBooks }) {
 	const [pcsBookCard, setPcsBookCard] = useState(0);
+
+	function handlerBuyBook() {
+		if (pcsBookCard > 0) {
+			const cloneBooks = { ...book, pcs: pcsBookCard };
+			setSelectedBooks((prev) => prev
+				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
+				.concat([cloneBooks]));
+		}
+	}
 
 	function decr() {
 		// eslint-disable-next-line max-len
-		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 1 && prevPcsBookCard <= 99 ? +prevPcsBookCard - 1 : prevPcsBookCard));
+		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 1 && prevPcsBookCard <= 99
+			? +prevPcsBookCard - 1
+			: prevPcsBookCard
+		));
 	}
 
 	function incr() {
 		// eslint-disable-next-line max-len
-		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 0 && prevPcsBookCard <= 98 ? +prevPcsBookCard + 1 : prevPcsBookCard));
+		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 0 && prevPcsBookCard <= 98
+			? +prevPcsBookCard + 1
+			: prevPcsBookCard
+		));
 	}
 
 	function userInput(e) {
@@ -42,7 +57,9 @@ export default function BookCard({ book }) {
 				<div className={styles.buyBlock}>
 					<div className={styles.cardPcsBlock}>
 						<span>Quantity:</span>
-						<button type="button" onClick={decr}>-</button>
+						<button type="button" onClick={decr}>
+							-
+						</button>
 						<input
 							type="text"
 							minLength={1}
@@ -54,10 +71,14 @@ export default function BookCard({ book }) {
 							// onFocus={() => setPcsBookCard('')}
 							placeholder="0"
 						/>
-						<button type="button" onClick={incr}>+</button>
+						<button type="button" onClick={incr}>
+							+
+						</button>
 						<span>pcs</span>
 					</div>
-					<button type="button" className={styles.buyBtn}>Buy</button>
+					<button type="button" className={styles.buyBtn} onClick={handlerBuyBook}>
+						Buy
+					</button>
 					{/* <button type="button" className={styles.buyBtn}>Buy</button>
 					<label htmlFor="bookCount" className={styles.buyLabel}>Quantity:</label>
 					<input
@@ -88,6 +109,5 @@ BookCard.propTypes = {
 		year: PropTypes.number,
 		price: PropTypes.number,
 	}).isRequired,
-	// countPcs: PropTypes.number.isRequired,
-	// setCountPcs: PropTypes.func.isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

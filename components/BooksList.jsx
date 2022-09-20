@@ -4,17 +4,17 @@ import BookCard from './BookCard';
 import styles from '../styles/home.module.css';
 import BookLine from './BookLine';
 
-export default function BooksList({ books, isCardView, addBook }) {
+export default function BooksList({ books, isCardView, setSelectedBooks }) {
 	return isCardView ? (
 		<div className={styles.cardView}>
 			{books.map((book) => (
-				<BookCard book={book} key={book.id} addBook={addBook} />
+				<BookCard book={book} key={book.id} setSelectedBooks={setSelectedBooks} />
 			))}
 		</div>
 	) : (
 		<div className={styles.listView}>
 			{books.map((book) => (
-				<BookLine book={book} key={book.id} addBook={addBook} />
+				<BookLine book={book} key={book.id} setSelectedBooks={setSelectedBooks} />
 			))}
 		</div>
 	);
@@ -31,14 +31,6 @@ BooksList.propTypes = {
 			price: PropTypes.string,
 		}).isRequired,
 	)).isRequired,
-	/* book: PropTypes.shape({
-		id: PropTypes.number,
-		author: PropTypes.string,
-		imageLink: PropTypes.string,
-		title: PropTypes.string,
-		year: PropTypes.number,
-		price: PropTypes.string,
-	}).isRequired, */
 	isCardView: PropTypes.bool.isRequired,
-	// countPcs: PropTypes.number.isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

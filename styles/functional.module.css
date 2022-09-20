@@ -42,6 +42,7 @@
 
 .btnActive {
 	background-color: rgb(108, 253, 127);
+	border: 1px solid;
 }
 
 .cartBlock {
