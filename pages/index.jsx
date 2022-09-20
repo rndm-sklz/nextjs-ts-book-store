@@ -8,7 +8,7 @@ import ToggleView from '../components/ToggleView';
 import BooksList from '../components/BooksList';
 import ShopCart from '../components/ShopCart';
 
-export default function Home({ books, setSelectedBooks }) {
+export default function Home({ books, setSelectedBooks, selectedBooks }) {
 	const [isCardView, setIsCardView] = useState(true);
 	// function buyBook(book) {
 	// 	// eslint-disable-next-line max-len
@@ -22,7 +22,7 @@ export default function Home({ books, setSelectedBooks }) {
 				<FilterSelect />
 				<SortSelect />
 				<ToggleView setView={setIsCardView} isCardView={isCardView} />
-				<ShopCart />
+				<ShopCart selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
 			</div>
 			<div className={styles.booksWrapper}>
 				<BooksList books={books} isCardView={isCardView} setSelectedBooks={setSelectedBooks} />
@@ -48,6 +48,19 @@ Home.propTypes = {
 		PropTypes.shape(
 			PropTypes.shape({
 				id: PropTypes.number,
+				author: PropTypes.string,
+				imageLink: PropTypes.string,
+				title: PropTypes.string,
+				year: PropTypes.number,
+				price: PropTypes.string,
+			}).isRequired,
+		),
+	).isRequired,
+	selectedBooks: PropTypes.arrayOf(
+		PropTypes.shape(
+			PropTypes.shape({
+				id: PropTypes.number,
+				pcs: PropTypes.number,
 				author: PropTypes.string,
 				imageLink: PropTypes.string,
 				title: PropTypes.string,

@@ -49,7 +49,7 @@ export default function BookLine({ book, setSelectedBooks }) {
 				<h3 className={styles.lineTitle}>{book.title}</h3>
 				<p className={styles.lineAuthor}>{book.author}</p>
 				<p className={styles.lineGenre}>{book.genre}</p>
-				<p className={styles.linePrice}>$ {book.price}</p>
+				<p className={styles.linePrice}><nobr>${book.price}</nobr></p>
 				<div className={styles.linePcsBlock}>
 					<span>Quantity:</span>
 					<button type="button" onClick={decr}>-</button>
