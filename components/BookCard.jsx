@@ -7,19 +7,26 @@ export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
 	const [pcsBookCard, setPcsBookCard] = useState(book.pcs);
 
 	useEffect(() => {
-		const tempBook = selectedBooks.find((i) => i.id === book.id);
+		const tempBook = selectedBooks.find((i) => i.id === book.id && i.pcs !== 0);
 		if (tempBook) {
 			setPcsBookCard(tempBook.pcs);
+			localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 		}
 	}, [selectedBooks, book]);
 
 	function handlerBuyBook() {
-		if (pcsBookCard > 0) {
+		if (pcsBookCard >= 0) {
 			const cloneBooks = { ...book, pcs: pcsBookCard };
-			setSelectedBooks((prev) => (prev
+			const buyBooks = selectedBooks
 				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
-				.concat([cloneBooks])
-			));
+				.concat([cloneBooks]);
+			setSelectedBooks(buyBooks);
+			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
+		}
+		if (pcsBookCard === 0) {
+			const cloneBooks = selectedBooks.filter((selectedBook) => selectedBook.id !== book.id);
+			setSelectedBooks(cloneBooks);
+			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
 		}
 	}
 
