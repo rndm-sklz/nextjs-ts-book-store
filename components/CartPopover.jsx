@@ -6,14 +6,14 @@ import PopoverListItems from './PopoverListItems';
 import styles from '../styles/popover.module.css';
 
 export default function CartPopover({
-	hide, open, handleOpenChange, children, selectedBooks, /* setSelectedBooks, */
+	open, handleOpenChange, children, selectedBooks, setSelectedBooks,
 }) {
 	return (
 		<Popover
 			content={
 				(
 					<div className={styles.popoverWrapper}>
-						<PopoverListItems selectedBooks={selectedBooks} />
+						<PopoverListItems selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
 						<div className={styles.popoverBtns}>
 							<Link href="/cart">
 								<a href="/cart">
@@ -53,7 +53,6 @@ CartPopover.propTypes = {
 	).isRequired,
 	children: PropTypes.node.isRequired,
 	open: PropTypes.bool.isRequired,
-	hide: PropTypes.func.isRequired,
 	handleOpenChange: PropTypes.func.isRequired,
-	// setSelectedBooks: PropTypes.func.isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

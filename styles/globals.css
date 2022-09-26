@@ -1,9 +1,20 @@
 html,
 body {
-	padding: 0 !important;
-	margin: 0 !important;
-	font-family: 'Montserrat', sans-serif !important;
-	background-color: rgb(232, 255, 232) !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	background-color: rgb(232, 255, 232);
+}
+
+#__next {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
 }
 
 a {

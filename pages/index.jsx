@@ -10,22 +10,39 @@ import ShopCart from '../components/ShopCart';
 
 export default function Home({ books, setSelectedBooks, selectedBooks }) {
 	const [isCardView, setIsCardView] = useState(true);
-	// function buyBook(book) {
-	// 	// eslint-disable-next-line max-len
-	// 	setSelectedBooks((prev) => prev
-	// .filter((selectedBook) => selectedBook.id !== book.id)
-	// .concat([book]));
-	// }
+	const [booksClient, setBooksClient] = useState(books);
+	const authors = booksClient.map((i) => i.author);
+	const genre = booksClient.map((i) => i.genre);
 	return (
 		<PageLayout title="Home">
 			<div className={styles.filtersWrapper}>
-				<FilterSelect />
-				<SortSelect />
+				<FilterSelect
+					booksClient={booksClient}
+					setBooksClient={setBooksClient}
+					authors={authors}
+					genre={genre}
+					books={books}
+				/>
+				<SortSelect
+					booksClient={booksClient}
+					setBooksClient={setBooksClient}
+					authors={authors}
+					genre={genre}
+					books={books}
+				/>
 				<ToggleView setView={setIsCardView} isCardView={isCardView} />
-				<ShopCart selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
+				<ShopCart
+					selectedBooks={selectedBooks}
+					setSelectedBooks={setSelectedBooks}
+				/>
 			</div>
 			<div className={styles.booksWrapper}>
-				<BooksList books={books} isCardView={isCardView} setSelectedBooks={setSelectedBooks} />
+				<BooksList
+					booksClient={booksClient}
+					isCardView={isCardView}
+					setSelectedBooks={setSelectedBooks}
+					selectedBooks={selectedBooks}
+				/>
 			</div>
 		</PageLayout>
 	);

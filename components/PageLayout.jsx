@@ -9,14 +9,14 @@ export default function PageLayout({ children, title }) {
 	return (
 		<>
 			<Head>
-				<title>PEPEBOOKS |{title}</title>
+				<title>{`PEPEBOOKS |${title}`}</title>
 				<meta name="keywords" content="books,books store" />
 				<meta name="description" content="this is books store PEPEBOOKS" />
 				<meta charSet="utf-8" />
 			</Head>
 			<header className={styles.header}>
 				<div className={styles.logo}>
-					<Link href="/">
+					<Link href="./">
 						<a href="/#">
 							<Image
 								priority
@@ -35,7 +35,7 @@ export default function PageLayout({ children, title }) {
 				</div>
 				<div className={styles.empty} />
 			</header>
-			<main>{children}</main>
+			<main className={styles.main}>{children}</main>
 			<footer className={styles.footer}>
 				<a
 					href="https://github.com/rndm-sklz/nextjs-book-store"

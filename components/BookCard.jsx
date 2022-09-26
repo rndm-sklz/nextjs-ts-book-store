@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
 
-export default function BookCard({ book, setSelectedBooks }) {
-	const [pcsBookCard, setPcsBookCard] = useState(0);
+export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
+	const [pcsBookCard, setPcsBookCard] = useState(book.pcs);
+
+	useEffect(() => {
+		const tempBook = selectedBooks.find((i) => i.id === book.id);
+		if (tempBook) {
+			setPcsBookCard(tempBook.pcs);
+		}
+	}, [selectedBooks, book]);
 
 	function handlerBuyBook() {
 		if (pcsBookCard > 0) {
 			const cloneBooks = { ...book, pcs: pcsBookCard };
-			setSelectedBooks((prev) => prev
+			setSelectedBooks((prev) => (prev
 				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
-				.concat([cloneBooks]));
+				.concat([cloneBooks])
+			));
 		}
 	}
 
 	function decr() {
-		// eslint-disable-next-line max-len
 		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 1 && prevPcsBookCard <= 99
 			? +prevPcsBookCard - 1
 			: prevPcsBookCard
@@ -24,8 +31,7 @@ export default function BookCard({ book, setSelectedBooks }) {
 	}
 
 	function incr() {
-		// eslint-disable-next-line max-len
-		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 0 && prevPcsBookCard <= 98
+		setPcsBookCard((prevPcsBookCard) =>	(prevPcsBookCard >= 0 && prevPcsBookCard <= 98
 			? +prevPcsBookCard + 1
 			: prevPcsBookCard
 		));
@@ -52,7 +58,10 @@ export default function BookCard({ book, setSelectedBooks }) {
 			<div className={styles.cardDecription}>
 				<h3>{book.title}</h3>
 				<p className={styles.genre}>{book.genre}</p>
-				<p>{book.author}</p>
+				<div className={styles.author}>
+					<p>{`${book.author}, `}</p>
+					<p>{book.year}</p>
+				</div>
 				<p className={styles.price}>$ {book.price}</p>
 				<div className={styles.buyBlock}>
 					<div className={styles.cardPcsBlock}>
@@ -65,7 +74,7 @@ export default function BookCard({ book, setSelectedBooks }) {
 							minLength={1}
 							maxLength={2}
 							required
-							// defaultValue={pcsBookList}
+							// defaultValue={pcsBookCard}
 							value={pcsBookCard}
 							onChange={userInput}
 							// onFocus={() => setPcsBookCard('')}
@@ -76,23 +85,13 @@ export default function BookCard({ book, setSelectedBooks }) {
 						</button>
 						<span>pcs</span>
 					</div>
-					<button type="button" className={styles.buyBtn} onClick={handlerBuyBook}>
+					<button
+						type="button"
+						className={styles.buyBtn}
+						onClick={handlerBuyBook}
+					>
 						Buy
 					</button>
-					{/* <button type="button" className={styles.buyBtn}>Buy</button>
-					<label htmlFor="bookCount" className={styles.buyLabel}>Quantity:</label>
-					<input
-						type="number"
-						id="bookCount"
-						min={0}
-						max={99}
-						maxLength={2}
-						className={styles.buyInput}
-						// defaultValue={0}
-						value={pcsBookCard}
-						onChange={(e) => setPcsBookCard(e.target.value)}
-					/>
-					<span>pcs</span> */}
 				</div>
 			</div>
 		</div>
@@ -102,6 +101,7 @@ export default function BookCard({ book, setSelectedBooks }) {
 BookCard.propTypes = {
 	book: PropTypes.shape({
 		id: PropTypes.number,
+		pcs: PropTypes.number,
 		genre: PropTypes.string,
 		author: PropTypes.string,
 		cover: PropTypes.string,
@@ -109,5 +109,18 @@ BookCard.propTypes = {
 		year: PropTypes.number,
 		price: PropTypes.number,
 	}).isRequired,
+	selectedBooks: PropTypes.arrayOf(
+		PropTypes.shape(
+			PropTypes.shape({
+				id: PropTypes.number,
+				pcs: PropTypes.number,
+				author: PropTypes.string,
+				imageLink: PropTypes.string,
+				title: PropTypes.string,
+				year: PropTypes.number,
+				price: PropTypes.string,
+			}).isRequired,
+		),
+	).isRequired,
 	setSelectedBooks: PropTypes.func.isRequired,
 };

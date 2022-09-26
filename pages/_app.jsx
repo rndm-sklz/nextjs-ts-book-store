@@ -1,10 +1,13 @@
 import '../styles/globals.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
 	const [selectedBooks, setSelectedBooks] = useState([]);
-	console.log(selectedBooks);
+	useEffect(() => {
+		const localBooks = JSON.parse(localStorage.getItem('selectedBooks'));
+		if (localBooks) setSelectedBooks(localBooks);
+	}, []);
 	/* eslint-disable react/jsx-props-no-spreading */
 	return (
 		<Component

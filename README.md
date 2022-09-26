@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Альтернативное задание для фронтендеров
+# Книжный магазин
 
-First, run the development server:
+В рамках данного тестового задания необходимо реализовать минимальную версию книжного магазина - собрать себе на любом сайте, который позволяет мокать (использовать заранее подготовленные структуры данных) данные (например [https://my-json-server.typicode.com/]) о книгах - достаточно 20 штук.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Роуты приложения
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+/ - базовый роут
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+/cart - корзина для покупки
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Карточка книги должна содержать базовую информацию - фото, автор, год издания, жанр. Так же должна быть возможность добавления / удаления книги из корзины для покупки, и счетчик добавленных экземпляров (например можно добавить в корзину более одного экземпляра книги)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Должна быть возможность добавить книги в корзину для дальнейшей оплаты (корзина должна быть доступна глобально - при клике на значок корзины открывается popover с информацией о купленных книгах, оттуда можно сразу убрать экземпляры / добавить экземпляры, так же должна быть кнопка перейти в корзину - на отдельный роут /cart, на коротом виден список книг, количество, и кнопка оплаты. По нажатию на кнопку оплаты выводится диалоговое окно, в котором написано что оплата совершена успешно.
 
-## Learn More
+Данные о выбранных книгах в корзине нужно запоминать между сессиями.
 
-To learn more about Next.js, take a look at the following resources:
+Добавить иконку сайта (во вкладку и на сайт, где на макете указано Icon)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+С роута /cart должна быть возможность вернуться обратно на список книг.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Список книг должен быть доступен в двух видах - табличный и строчный.
 
-## Deploy on Vercel
+Так же необходима фильтрация данного списка
+по жанрам
+по году издания
+по автору
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Так же необходима сортировка данного списка (возрастание/убывание)
+по жанрам
+по году издания
+по автору
+Примерный вариант отображения (Регулируется исполнителем на его усмотрение)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+В рамках реализации можно использовать Popover из [https://ant.design/components/popover/]. Реализации кнопок, селектов и т д должны быть самописными.
+
+Для стилизации можно использовать любой подходящий css-фреймворк, либо же писать CSS самому (допускается CSS Flexbox или же CSS Grid).
+
+Для первого этапа необходимо реализовать базовый функционал на JS, next.js и react. Использование стейт-менеджеров остается на усмотрение исполнителя, но не рекомендуется. Так же необходимо настроить eslint.

@@ -1,36 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import styles from '../styles/home.module.css';
 
-export default function BookLine({ book, setSelectedBooks }) {
-	const [pcsBookList, setPcsBookList] = useState(0);
-	// console.log(setSelectedBooks);
+export default function BookLine({ book, selectedBooks, setSelectedBooks }) {
+	const [pcsBookLine, setPcsBookLine] = useState(book.pcs);
+
+	useEffect(() => {
+		const tempBook = selectedBooks.find((i) => i.id === book.id);
+		if (tempBook) {
+			setPcsBookLine(tempBook.pcs);
+		}
+	}, [selectedBooks, book]);
+
 	function handlerBuyBook() {
-		if (pcsBookList > 0) {
-			const cloneBooks = { ...book, pcs: pcsBookList };
-			setSelectedBooks((prev) => prev
+		if (pcsBookLine > 0) {
+			const cloneBooks = { ...book, pcs: pcsBookLine };
+			setSelectedBooks((prev) => (prev
 				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
-				.concat([cloneBooks]));
+				.concat([cloneBooks])
+			));
 		}
 	}
 
 	function decr() {
-		// eslint-disable-next-line max-len
-		setPcsBookList((prevPcsBookList) => (prevPcsBookList >= 1 && prevPcsBookList <= 99 ? +prevPcsBookList - 1 : prevPcsBookList));
+		setPcsBookLine((prevPcsBookLine) => (
+			prevPcsBookLine >= 1 && prevPcsBookLine <= 99
+				? +prevPcsBookLine - 1
+				: prevPcsBookLine
+		));
 	}
 
 	function incr() {
-		// eslint-disable-next-line max-len
-		setPcsBookList((prevPcsBookList) => (prevPcsBookList >= 0 && prevPcsBookList <= 98 ? +prevPcsBookList + 1 : prevPcsBookList));
+		setPcsBookLine((prevPcsBookLine) => (
+			prevPcsBookLine >= 0 && prevPcsBookLine <= 98
+				? +prevPcsBookLine + 1
+				: prevPcsBookLine
+		));
 	}
 
 	function userInput(e) {
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
-			setPcsBookList(numerableValue);
+			setPcsBookLine(numerableValue);
 		} else {
-			setPcsBookList((prevPcsBookList) => prevPcsBookList);
+			setPcsBookLine((prevPcsBookLine) => prevPcsBookLine);
 		}
 	}
 
@@ -47,27 +61,38 @@ export default function BookLine({ book, setSelectedBooks }) {
 			</div>
 			<div className={styles.lineDecription}>
 				<h3 className={styles.lineTitle}>{book.title}</h3>
-				<p className={styles.lineAuthor}>{book.author}</p>
+				<div>
+					<p className={styles.lineAuthor}>{book.author}</p>
+					<p>{book.year}</p>
+				</div>
 				<p className={styles.lineGenre}>{book.genre}</p>
-				<p className={styles.linePrice}><nobr>${book.price}</nobr></p>
+				<p className={styles.linePrice}>
+					<nobr>${book.price}</nobr>
+				</p>
 				<div className={styles.linePcsBlock}>
 					<span>Quantity:</span>
-					<button type="button" onClick={decr}>-</button>
+					<button type="button" onClick={decr}>
+						-
+					</button>
 					<input
 						type="text"
 						minLength={1}
 						maxLength={2}
 						required
-						// defaultValue={pcsBookList}
-						value={pcsBookList}
+						value={pcsBookLine}
 						onChange={userInput}
-						// onFocus={() => setPcsBookList('')}
 						placeholder="0"
 					/>
-					<button type="button" onClick={incr}>+</button>
+					<button type="button" onClick={incr}>
+						+
+					</button>
 					<span>pcs</span>
 				</div>
-				<button type="button" className={styles.lineBuyBtn} onClick={handlerBuyBook}>
+				<button
+					type="button"
+					className={styles.lineBuyBtn}
+					onClick={handlerBuyBook}
+				>
 					Buy
 				</button>
 			</div>
@@ -86,5 +111,18 @@ BookLine.propTypes = {
 		price: PropTypes.number,
 		pcs: PropTypes.number,
 	}).isRequired,
+	selectedBooks: PropTypes.arrayOf(
+		PropTypes.shape(
+			PropTypes.shape({
+				id: PropTypes.number,
+				pcs: PropTypes.number,
+				author: PropTypes.string,
+				imageLink: PropTypes.string,
+				title: PropTypes.string,
+				year: PropTypes.number,
+				price: PropTypes.string,
+			}).isRequired,
+		),
+	).isRequired,
 	setSelectedBooks: PropTypes.func.isRequired,
 };

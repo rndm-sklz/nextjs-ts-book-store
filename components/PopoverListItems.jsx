@@ -4,12 +4,19 @@ import PopoverItem from './PopoverItem';
 import styles from '../styles/popover.module.css';
 
 export default function PopoverListItem({ setSelectedBooks, selectedBooks }) {
-	return (
+	return selectedBooks[0] ? (
 		<div className={styles.popoverList}>
 			{selectedBooks.map((selectedBook) => (
-				<PopoverItem key={selectedBook.id} selectedBook={selectedBook} />
+				<PopoverItem
+					key={selectedBook.id}
+					selectedBook={selectedBook}
+					setSelectedBooks={setSelectedBooks}
+					selectedBooks={selectedBooks}
+				/>
 			))}
 		</div>
+	) : (
+		<p>Cart is empty</p>
 	);
 }
 PopoverListItem.propTypes = {
@@ -26,5 +33,5 @@ PopoverListItem.propTypes = {
 			}).isRequired,
 		),
 	).isRequired,
-	// setSelectedBooks: PropTypes.func.isRequired,
+	setSelectedBooks: PropTypes.func.isRequired,
 };

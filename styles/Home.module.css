@@ -30,6 +30,19 @@
 	margin-top: 20px;
 }
 
+.author {
+	display: flex;
+	justify-content: flex-start;
+	align-items:flex-end;
+}
+
+.author p:nth-child(2) {
+	font-size: 0.7em;
+	margin: 5;
+	padding: 0;
+
+}
+
 .genre {
 	font-size: 0.6em;
 }
@@ -166,6 +179,11 @@
 }
 
 .lineAuthor {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.lineAuthor + p {
 	font-size: 12px;
 }
 
