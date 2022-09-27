@@ -6,11 +6,15 @@ export default function FiterSelect({
 	authors, setBooksClient, books, genre,
 }) {
 	const authorsOptions = authors.map((i) => (
-		<option key={i} value={i}>{i}</option>
+		<option key={i} value={i}>
+			{i}
+		</option>
 	));
 	const genreSet = Array.from(new Set(genre));
 	const genreOptions = genreSet.map((i) => (
-		<option key={i} value={i}>{i}</option>
+		<option key={i} value={i}>
+			{i}
+		</option>
 	));
 
 	function authorFilter(e) {
@@ -18,7 +22,7 @@ export default function FiterSelect({
 		if (authorValue === 'all' || authorValue === 'selected') {
 			setBooksClient(() => books);
 		} else {
-			setBooksClient((prev) => prev.filter((i) => i.author === authorValue));
+			setBooksClient(books.filter((i) => i.author === authorValue));
 		}
 	}
 
@@ -27,7 +31,7 @@ export default function FiterSelect({
 		if (genreValue === 'all' || genreValue === 'selected') {
 			setBooksClient(() => books);
 		} else {
-			setBooksClient((prev) => prev.filter((i) => i.genre === genreValue));
+			setBooksClient(books.filter((i) => i.genre === genreValue));
 		}
 	}
 
@@ -36,14 +40,24 @@ export default function FiterSelect({
 			<label htmlFor="filter-genre" className={styles.label}>
 				Filter:
 			</label>
-			<select name="filter-genre" id="filter-genre" className={styles.select} onChange={genreFilter}>
+			<select
+				name="filter-genre"
+				id="filter-genre"
+				className={styles.select}
+				onChange={genreFilter}
+			>
 				<option value="selected" className={styles.defaultOption}>
 					by genre:
 				</option>
 				<option value="all">-All-</option>
 				{genreOptions}
 			</select>
-			<select name="filter-author" id="filter" className={styles.select} onChange={authorFilter}>
+			<select
+				name="filter-author"
+				id="filter"
+				className={styles.select}
+				onChange={authorFilter}
+			>
 				<option value="selected" className={styles.defaultOption}>
 					by author:
 				</option>

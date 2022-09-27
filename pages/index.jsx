@@ -11,8 +11,8 @@ import ShopCart from '../components/ShopCart';
 export default function Home({ books, setSelectedBooks, selectedBooks }) {
 	const [isCardView, setIsCardView] = useState(true);
 	const [booksClient, setBooksClient] = useState(books);
-	const authors = booksClient.map((i) => i.author);
-	const genre = booksClient.map((i) => i.genre);
+	const authors = books.map((i) => i.author);
+	const genre = books.map((i) => i.genre);
 	return (
 		<PageLayout title="Home">
 			<div className={styles.filtersWrapper}>
