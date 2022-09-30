@@ -1,9 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Book } from '../pages/_app';
 import styles from '../styles/functional.module.css';
 
-export default function SortSelect({ booksClient, setBooksClient, books }) {
-	function sortChange(e) {
+export default function SortSelect({
+	booksClient,
+	setBooksClient,
+	books,
+}: {
+	booksClient: Book[];
+	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>;
+	books: Book[];
+}) {
+	function sortChange(e: React.ChangeEvent<HTMLSelectElement>) {
 		const sortValue = e.target.value;
 		if (sortValue === 'yearAsc') {
 			const sortByYear = [...booksClient].sort((a, b) => a.year - b.year);
@@ -69,32 +77,3 @@ export default function SortSelect({ booksClient, setBooksClient, books }) {
 		</form>
 	);
 }
-SortSelect.propTypes = {
-	// authors: PropTypes.arrayOf(PropTypes.string).isRequired,
-	// genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-	booksClient: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setBooksClient: PropTypes.func.isRequired,
-	books: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-};

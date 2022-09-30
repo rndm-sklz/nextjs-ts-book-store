@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
+import type { Book } from '../pages/_app';
 import styles from '../styles/home.module.css';
 
-export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
-	const [pcsBookCard, setPcsBookCard] = useState(book.pcs);
+export default function BookCard({
+	book,
+	selectedBooks,
+	setSelectedBooks,
+}: {
+	book: Book;
+	selectedBooks: Book[];
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+}) {
+	const [pcsBookCard, setPcsBookCard] = useState<number>(book.pcs);
 
-	useEffect(() => {
+	useEffect((): void => {
 		const tempBook = selectedBooks.find((i) => i.id === book.id && i.pcs !== 0);
 		if (tempBook) {
 			setPcsBookCard(tempBook.pcs);
@@ -24,7 +32,9 @@ export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
 			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
 		}
 		if (pcsBookCard === 0) {
-			const cloneBooks = selectedBooks.filter((selectedBook) => selectedBook.id !== book.id);
+			const cloneBooks = selectedBooks.filter(
+				(selectedBook) => selectedBook.id !== book.id,
+			);
 			setSelectedBooks(cloneBooks);
 			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
 		}
@@ -38,13 +48,13 @@ export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
 	}
 
 	function incr() {
-		setPcsBookCard((prevPcsBookCard) =>	(prevPcsBookCard >= 0 && prevPcsBookCard <= 98
+		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 0 && prevPcsBookCard <= 98
 			? +prevPcsBookCard + 1
 			: prevPcsBookCard
 		));
 	}
 
-	function userInput(e) {
+	function userInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			setPcsBookCard(numerableValue);
@@ -81,10 +91,8 @@ export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
 							minLength={1}
 							maxLength={2}
 							required
-							// defaultValue={pcsBookCard}
 							value={pcsBookCard}
 							onChange={userInput}
-							// onFocus={() => setPcsBookCard('')}
 							placeholder="0"
 						/>
 						<button type="button" onClick={incr}>
@@ -104,30 +112,3 @@ export default function BookCard({ book, selectedBooks, setSelectedBooks }) {
 		</div>
 	);
 }
-
-BookCard.propTypes = {
-	book: PropTypes.shape({
-		id: PropTypes.number,
-		pcs: PropTypes.number,
-		genre: PropTypes.string,
-		author: PropTypes.string,
-		cover: PropTypes.string,
-		title: PropTypes.string,
-		year: PropTypes.number,
-		price: PropTypes.number,
-	}).isRequired,
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setSelectedBooks: PropTypes.func.isRequired,
-};

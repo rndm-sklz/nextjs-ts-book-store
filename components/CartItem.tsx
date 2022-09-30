@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
-import styles from '../styles/popover.module.css';
+import type { Book } from '../pages/_app';
+import styles from '../styles/cart.module.css';
 
-export default function PopoverItem({ selectedBook, selectedBooks, setSelectedBooks }) {
-	let { pcs } = selectedBook;
+export default function CartItem({
+	selectedBook,
+	selectedBooks,
+	setSelectedBooks,
+}: {
+	selectedBook: Book;
+	selectedBooks: Book[];
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+}) {
+	let { pcs }: { pcs: number } = selectedBook;
 
 	useEffect(() => {
 		if (selectedBook.pcs <= 0) {
-			setSelectedBooks((prev) => prev.filter((i) => i.id !== selectedBook.id));
+			setSelectedBooks((prev: Book[]) => prev
+				.filter((i) => i.id !== selectedBook.id));
 		}
+		localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 	}, [selectedBooks, selectedBook]);
 
 	function incr() {
@@ -17,10 +27,11 @@ export default function PopoverItem({ selectedBook, selectedBooks, setSelectedBo
 			pcs += 1;
 		}
 		const incrPcsBook = { ...selectedBook, pcs };
-		setSelectedBooks((prev) => prev
+		setSelectedBooks((prev: Book[]) => prev
 			.filter((i) => i.id !== incrPcsBook.id)
 			.concat([incrPcsBook])
 			.sort((a, b) => a.id - b.id));
+		localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 	}
 
 	function decr() {
@@ -28,28 +39,30 @@ export default function PopoverItem({ selectedBook, selectedBooks, setSelectedBo
 			pcs -= 1;
 		}
 		const incrPcsBook = { ...selectedBook, pcs };
-		setSelectedBooks((prev) => prev
+		setSelectedBooks((prev: Book[]) => prev
 			.filter((i) => i.id !== incrPcsBook.id)
 			.concat([incrPcsBook])
 			.sort((a, b) => a.id - b.id));
+		localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 	}
 
-	function userInput(e) {
+	function userInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			const inputPcsBook = { ...selectedBook, pcs: numerableValue };
-			setSelectedBooks((prev) => prev
+			setSelectedBooks((prev: Book[]) => prev
 				.filter((i) => i.id !== inputPcsBook.id)
 				.concat([inputPcsBook])
 				.sort((a, b) => a.id - b.id));
+			localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 		} else {
-			setSelectedBooks((prev) => prev);
+			setSelectedBooks((prev: Book[]) => prev);
 		}
 	}
 
 	return selectedBook.pcs > 0 ? (
-		<div className={styles.popoverItemWrappper}>
-			<div className={styles.popoverCover}>
+		<div className={styles.cartItemWrappper}>
+			<div className={styles.cartCover}>
 				<Image
 					priority
 					src={selectedBook.cover}
@@ -58,11 +71,11 @@ export default function PopoverItem({ selectedBook, selectedBooks, setSelectedBo
 					alt={selectedBook.title}
 				/>
 			</div>
-			<p className={styles.popoverTitle}>{selectedBook.title}</p>
-			<p className={styles.popoverPrice}>
-				<nobr>${selectedBook.price * selectedBook.pcs}</nobr>
+			<p className={styles.cartTitle}>{selectedBook.title}</p>
+			<p className={styles.cartPrice}>
+				${selectedBook.price * selectedBook.pcs}
 			</p>
-			<div className={styles.popoverPcsBlock}>
+			<div className={styles.cartPcsBlock}>
 				<button type="button" onClick={decr}>
 					-
 				</button>
@@ -80,29 +93,5 @@ export default function PopoverItem({ selectedBook, selectedBooks, setSelectedBo
 				<span>pcs</span>
 			</div>
 		</div>
-	) : (null);
+	) : null;
 }
-
-PopoverItem.propTypes = {
-	selectedBook: PropTypes.shape({
-		title: PropTypes.string,
-		id: PropTypes.number,
-		pcs: PropTypes.number,
-		price: PropTypes.number,
-		cover: PropTypes.string,
-	}).isRequired,
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setSelectedBooks: PropTypes.func.isRequired,
-};

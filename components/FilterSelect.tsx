@@ -1,23 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Book } from '../pages/_app';
 import styles from '../styles/functional.module.css';
 
 export default function FiterSelect({
-	authors, setBooksClient, books, genre,
+	authors,
+	setBooksClient,
+	books,
+	genre,
+}: {
+	authors: string[];
+	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>;
+	books: Book[];
+	genre: string[];
 }) {
 	const authorsOptions = authors.map((i) => (
 		<option key={i} value={i}>
 			{i}
 		</option>
 	));
-	const genreSet = Array.from(new Set(genre));
+	const genreSet: string[] = Array.from(new Set(genre));
 	const genreOptions = genreSet.map((i) => (
 		<option key={i} value={i}>
 			{i}
 		</option>
 	));
 
-	function authorFilter(e) {
+	function authorFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const authorValue = e.target.value;
 		if (authorValue === 'all' || authorValue === 'selected') {
 			setBooksClient(() => books);
@@ -26,7 +34,7 @@ export default function FiterSelect({
 		}
 	}
 
-	function genreFilter(e) {
+	function genreFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const genreValue = e.target.value;
 		if (genreValue === 'all' || genreValue === 'selected') {
 			setBooksClient(() => books);
@@ -67,20 +75,3 @@ export default function FiterSelect({
 		</form>
 	);
 }
-FiterSelect.propTypes = {
-	authors: PropTypes.arrayOf(PropTypes.string).isRequired,
-	genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-	setBooksClient: PropTypes.func.isRequired,
-	books: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-};

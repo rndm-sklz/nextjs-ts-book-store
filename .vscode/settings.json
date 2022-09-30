@@ -1,0 +1,11 @@
+{
+	"eslint.alwaysShowStatus": true,
+	"eslint.format.enable": false,
+	"eslint.quiet": false,
+	"eslint.codeActionsOnSave.rules": null,
+	"eslint.validate": ["javascript", "typescript", "html"],
+	"eslint.options": {
+		"extensions": [".js", ".ts", ".jsx", ".tsx", "html"]
+	},
+	"eslint.lintTask.enable": false,
+}

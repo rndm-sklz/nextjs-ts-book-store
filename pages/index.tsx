@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps } from 'next';
+import type { Book } from './_app';
 import styles from '../styles/home.module.css';
 import PageLayout from '../components/PageLayout';
 import FilterSelect from '../components/FilterSelect';
@@ -8,16 +9,23 @@ import ToggleView from '../components/ToggleView';
 import BooksList from '../components/BooksList';
 import ShopCart from '../components/ShopCart';
 
-export default function Home({ books, setSelectedBooks, selectedBooks }) {
-	const [isCardView, setIsCardView] = useState(true);
-	const [booksClient, setBooksClient] = useState(books);
-	const authors = books.map((i) => i.author);
-	const genre = books.map((i) => i.genre);
+export default function Home({
+	books,
+	setSelectedBooks,
+	selectedBooks,
+}: {
+	books: Book[];
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	selectedBooks: Book[]
+}) {
+	const [isCardView, setIsCardView] = useState<boolean>(true);
+	const [booksClient, setBooksClient] = useState<Book[]>(books);
+	const authors: string[] = books.map((i) => i.author);
+	const genre: string[] = books.map((i) => i.genre);
 	return (
 		<PageLayout title="Home">
 			<div className={styles.filtersWrapper}>
 				<FilterSelect
-					booksClient={booksClient}
 					setBooksClient={setBooksClient}
 					authors={authors}
 					genre={genre}
@@ -26,8 +34,6 @@ export default function Home({ books, setSelectedBooks, selectedBooks }) {
 				<SortSelect
 					booksClient={booksClient}
 					setBooksClient={setBooksClient}
-					authors={authors}
-					genre={genre}
 					books={books}
 				/>
 				<ToggleView setView={setIsCardView} isCardView={isCardView} />
@@ -48,7 +54,7 @@ export default function Home({ books, setSelectedBooks, selectedBooks }) {
 	);
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const res = await fetch(
 		'https://my-json-server.typicode.com/rndm-sklz/book-store-db/books',
 	);
@@ -58,33 +64,4 @@ export const getStaticProps = async () => {
 			books,
 		},
 	};
-};
-
-Home.propTypes = {
-	books: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setSelectedBooks: PropTypes.func.isRequired,
 };

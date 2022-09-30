@@ -1,11 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/layout.module.css';
 
-export default function PageLayout({ children, title }) {
+export default function PageLayout({
+	children,
+	title,
+}: {
+	children: React.ReactNode;
+	title: string;
+}) {
 	return (
 		<>
 			<Head>
@@ -55,8 +60,3 @@ export default function PageLayout({ children, title }) {
 		</>
 	);
 }
-
-PageLayout.propTypes = {
-	children: PropTypes.node.isRequired,
-	title: PropTypes.string.isRequired,
-};

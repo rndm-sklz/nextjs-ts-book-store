@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
+import type { Book } from '../pages/_app';
 import styles from '../styles/home.module.css';
 
-export default function BookLine({ book, selectedBooks, setSelectedBooks }) {
-	const [pcsBookLine, setPcsBookLine] = useState(book.pcs);
+export default function BookLine({
+	book,
+	selectedBooks,
+	setSelectedBooks,
+}: {
+	book: Book;
+	selectedBooks: Book[];
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+}) {
+	const [pcsBookLine, setPcsBookLine] = useState<number>(book.pcs);
 
-	useEffect(() => {
+	useEffect((): void => {
 		const tempBook = selectedBooks.find((i) => i.id === book.id && i.pcs !== 0);
 		if (tempBook) {
 			setPcsBookLine(tempBook.pcs);
@@ -24,29 +32,29 @@ export default function BookLine({ book, selectedBooks, setSelectedBooks }) {
 			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
 		}
 		if (pcsBookLine === 0) {
-			const cloneBooks = selectedBooks.filter((selectedBook) => selectedBook.id !== book.id);
+			const cloneBooks = selectedBooks.filter(
+				(selectedBook) => selectedBook.id !== book.id,
+			);
 			setSelectedBooks(cloneBooks);
 			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
 		}
 	}
 
 	function decr() {
-		setPcsBookLine((prevPcsBookLine) => (
-			prevPcsBookLine >= 1 && prevPcsBookLine <= 99
-				? +prevPcsBookLine - 1
-				: prevPcsBookLine
+		setPcsBookLine((prevPcsBookLine) => (prevPcsBookLine >= 1 && prevPcsBookLine <= 99
+			? +prevPcsBookLine - 1
+			: prevPcsBookLine
 		));
 	}
 
 	function incr() {
-		setPcsBookLine((prevPcsBookLine) => (
-			prevPcsBookLine >= 0 && prevPcsBookLine <= 98
-				? +prevPcsBookLine + 1
-				: prevPcsBookLine
+		setPcsBookLine((prevPcsBookLine) => (prevPcsBookLine >= 0 && prevPcsBookLine <= 98
+			? +prevPcsBookLine + 1
+			: prevPcsBookLine
 		));
 	}
 
-	function userInput(e) {
+	function userInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			setPcsBookLine(numerableValue);
@@ -73,9 +81,7 @@ export default function BookLine({ book, selectedBooks, setSelectedBooks }) {
 					<p>{book.year}</p>
 				</div>
 				<p className={styles.lineGenre}>{book.genre}</p>
-				<p className={styles.linePrice}>
-					<nobr>${book.price}</nobr>
-				</p>
+				<p className={styles.linePrice}>${book.price}</p>
 				<div className={styles.linePcsBlock}>
 					<span>Quantity:</span>
 					<button type="button" onClick={decr}>
@@ -106,30 +112,3 @@ export default function BookLine({ book, selectedBooks, setSelectedBooks }) {
 		</div>
 	);
 }
-
-BookLine.propTypes = {
-	book: PropTypes.shape({
-		id: PropTypes.number,
-		genre: PropTypes.string,
-		author: PropTypes.string,
-		cover: PropTypes.string,
-		title: PropTypes.string,
-		year: PropTypes.number,
-		price: PropTypes.number,
-		pcs: PropTypes.number,
-	}).isRequired,
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setSelectedBooks: PropTypes.func.isRequired,
-};

@@ -1,11 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
+import type { Book } from '../pages/_app';
 import CartItem from './CartItem';
 import CartTotalPrice from './CartTotalPrice';
 import styles from '../styles/cart.module.css';
 
-export default function CartList({ selectedBooks, setSelectedBooks }) {
+export default function CartList({
+	selectedBooks,
+	setSelectedBooks,
+}: {
+	selectedBooks: Book[];
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+}) {
 	return selectedBooks[0] ? (
 		<div className={styles.cartList}>
 			<div className={styles.inCart}>
@@ -41,20 +47,3 @@ export default function CartList({ selectedBooks, setSelectedBooks }) {
 		</div>
 	);
 }
-
-CartList.propTypes = {
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-	setSelectedBooks: PropTypes.func.isRequired,
-};

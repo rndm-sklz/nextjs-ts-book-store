@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
+import type { Book } from '../pages/_app';
 import styles from '../styles/cart.module.css';
 
-export default function CartTotalPrice({ selectedBooks }) {
-	const [totalPrice, setTotalPrice] = useState(0);
-	const [isOpen, setIsOpen] = useState(false);
-	useEffect(() => {
+export default function CartTotalPrice({ selectedBooks }: {selectedBooks: Book[]}) {
+	const [totalPrice, setTotalPrice] = useState<number>(0);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	useEffect((): void => {
 		const sumPrice = selectedBooks.reduce((sum, el) => sum + el.price * el.pcs, 0);
 		setTotalPrice(sumPrice);
 	}, [selectedBooks, totalPrice]);
 	return (
 		<div className={styles.totalPrice}>
 			<p className={styles.totalPriceTitle}>Total price:</p>
-			<p className={styles.totalPriceNum}><nobr>${totalPrice}</nobr></p>
+			<p className={styles.totalPriceNum}>${totalPrice}</p>
 			<button type="button" className={styles.payBtn} onClick={() => setIsOpen(true)}>Pay</button>
 			{isOpen && (
 				<div className={styles.payModalBgr}>
@@ -22,7 +22,6 @@ export default function CartTotalPrice({ selectedBooks }) {
 						<div className={styles.logoModalWindow}>
 							<Image
 								priority
-								responsive="true"
 								src="/img/cash.png"
 								layout="fill"
 								alt="Pay logo"
@@ -35,18 +34,3 @@ export default function CartTotalPrice({ selectedBooks }) {
 		</div>
 	);
 }
-CartTotalPrice.propTypes = {
-	selectedBooks: PropTypes.arrayOf(
-		PropTypes.shape(
-			PropTypes.shape({
-				id: PropTypes.number,
-				pcs: PropTypes.number,
-				author: PropTypes.string,
-				imageLink: PropTypes.string,
-				title: PropTypes.string,
-				year: PropTypes.number,
-				price: PropTypes.string,
-			}).isRequired,
-		),
-	).isRequired,
-};

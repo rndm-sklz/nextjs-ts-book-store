@@ -1,12 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from '../styles/functional.module.css';
 
-export default function ToggleView({ setView, isCardView }) {
-	function handleListView() {
+export default function ToggleView({
+	setView,
+	isCardView,
+}: {
+	setView: React.Dispatch<React.SetStateAction<boolean>>;
+	isCardView: boolean;
+}) {
+	function handleListView(): void {
 		setView(false);
 	}
-	function handleCardView() {
+	function handleCardView(): void {
 		setView(true);
 	}
 	return (
@@ -35,8 +40,3 @@ export default function ToggleView({ setView, isCardView }) {
 		</div>
 	);
 }
-
-ToggleView.propTypes = {
-	setView: PropTypes.func.isRequired,
-	isCardView: PropTypes.bool.isRequired,
-};
