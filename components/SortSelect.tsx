@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Book } from '../pages/_app';
-import styles from '../styles/functional.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/functional.module.css';
 
 export default function SortSelect({
 	booksClient,

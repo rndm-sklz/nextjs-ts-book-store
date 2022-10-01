@@ -52,17 +52,17 @@
 	font-size: 1.17em;
 }
 
-.cardDecription {
+.cardDescription {
 	display: flex;
 	flex-direction: column;
 	justify-content: stretch;
 }
 
-.cardDecription p {
+.cardDescription p {
 	margin: 5px;
 }
 
-.cardDecription h3 {
+.cardDescription h3 {
 	margin: 10px;
 	height: 69px;
 }
@@ -161,7 +161,7 @@
 	padding-right: 10px;
 }
 
-.lineDecription {
+.lineDescription {
 	display: grid;
 	grid-template-columns: 4fr 1.5fr 1fr 0.5fr 1.5fr 0.5fr;
 	align-items: center;

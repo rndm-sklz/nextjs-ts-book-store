@@ -8,4 +8,10 @@
 		"extensions": [".js", ".ts", ".jsx", ".tsx", "html"]
 	},
 	"eslint.lintTask.enable": false,
+	"cSpell.words": [
+		"antd",
+		"Btns",
+		"pepe",
+		"PEPEBOOKS"
+	],
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { Popover } from 'antd';
-import PopoverListItems from './PopoverListItems';
-import type { Book } from '../pages/_app';
-import styles from '../styles/popover.module.css';
+import PopoverListItems from 'components/PopoverListItems';
+import type { Book } from 'pages/types';
+import styles from 'styles/popover.module.css';
 
 export default function CartPopover({
 	open,
@@ -13,10 +13,10 @@ export default function CartPopover({
 	setSelectedBooks,
 }: {
 	open: boolean;
-	handleOpenChange: (e: boolean) => void;
+	handleOpenChange: (value: boolean) => void;
 	children: React.ReactNode;
 	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
 	return (
 		<Popover

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import type { Book } from '../pages/_app';
-import styles from '../styles/home.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/home.module.css';
 
 export default function BookCard({
 	book,
@@ -10,12 +10,12 @@ export default function BookCard({
 }: {
 	book: Book;
 	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
-	const [pcsBookCard, setPcsBookCard] = useState<number>(book.pcs);
+	const [pcsBookCard, setPcsBookCard] = useState(book.pcs);
 
-	useEffect((): void => {
-		const tempBook = selectedBooks.find((i) => i.id === book.id && i.pcs !== 0);
+	useEffect(() => {
+		const tempBook = selectedBooks.find((i) => i.id === book.id);
 		if (tempBook) {
 			setPcsBookCard(tempBook.pcs);
 			localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
@@ -25,16 +25,15 @@ export default function BookCard({
 	function handlerBuyBook() {
 		if (pcsBookCard >= 0) {
 			const cloneBooks = { ...book, pcs: pcsBookCard };
-			const buyBooks = selectedBooks
+			const purchasedBooks = selectedBooks
 				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
 				.concat([cloneBooks]);
-			setSelectedBooks(buyBooks);
-			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
+			setSelectedBooks(purchasedBooks);
+			localStorage.setItem('selectedBooks', JSON.stringify(purchasedBooks));
 		}
 		if (pcsBookCard === 0) {
-			const cloneBooks = selectedBooks.filter(
-				(selectedBook) => selectedBook.id !== book.id,
-			);
+			const cloneBooks = selectedBooks
+				.filter((selectedBook) => selectedBook.id !== book.id);
 			setSelectedBooks(cloneBooks);
 			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
 		}
@@ -58,8 +57,6 @@ export default function BookCard({
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			setPcsBookCard(numerableValue);
-		} else {
-			setPcsBookCard((prevPcsBookCard) => prevPcsBookCard);
 		}
 	}
 
@@ -72,7 +69,7 @@ export default function BookCard({
 				height={450}
 				alt={book.title}
 			/>
-			<div className={styles.cardDecription}>
+			<div className={styles.cardDescription}>
 				<h3>{book.title}</h3>
 				<p className={styles.genre}>{book.genre}</p>
 				<div className={styles.author}>

@@ -1,34 +1,34 @@
 import React from 'react';
-import type { Book } from '../pages/_app';
-import styles from '../styles/functional.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/functional.module.css';
 
-export default function FiterSelect({
-	authors,
+export default function FilterSelect({
 	setBooksClient,
 	books,
-	genre,
 }: {
-	authors: string[];
 	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>;
 	books: Book[];
-	genre: string[];
 }) {
-	const authorsOptions = authors.map((i) => (
-		<option key={i} value={i}>
-			{i}
+	const authorsSet = Array.from(new Set(books.map((i) => i.author)));
+
+	const authorsOptions = authorsSet.map((author) => (
+		<option key={author} value={author}>
+			{author}
 		</option>
 	));
-	const genreSet: string[] = Array.from(new Set(genre));
-	const genreOptions = genreSet.map((i) => (
-		<option key={i} value={i}>
-			{i}
+
+	const genresSet = Array.from(new Set(books.map((i) => i.genre)));
+
+	const genresOptions = genresSet.map((genre) => (
+		<option key={genre} value={genre}>
+			{genre}
 		</option>
 	));
 
 	function authorFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const authorValue = e.target.value;
 		if (authorValue === 'all' || authorValue === 'selected') {
-			setBooksClient(() => books);
+			setBooksClient(books);
 		} else {
 			setBooksClient(books.filter((i) => i.author === authorValue));
 		}
@@ -37,7 +37,7 @@ export default function FiterSelect({
 	function genreFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const genreValue = e.target.value;
 		if (genreValue === 'all' || genreValue === 'selected') {
-			setBooksClient(() => books);
+			setBooksClient(books);
 		} else {
 			setBooksClient(books.filter((i) => i.genre === genreValue));
 		}
@@ -58,7 +58,7 @@ export default function FiterSelect({
 					by genre:
 				</option>
 				<option value="all">-All-</option>
-				{genreOptions}
+				{genresOptions}
 			</select>
 			<select
 				name="filter-author"

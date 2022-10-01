@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import type { Book } from '../pages/_app';
-import styles from '../styles/home.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/home.module.css';
 
 export default function BookLine({
 	book,
@@ -10,11 +10,11 @@ export default function BookLine({
 }: {
 	book: Book;
 	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
-	const [pcsBookLine, setPcsBookLine] = useState<number>(book.pcs);
+	const [pcsBookLine, setPcsBookLine] = useState(book.pcs);
 
-	useEffect((): void => {
+	useEffect(() => {
 		const tempBook = selectedBooks.find((i) => i.id === book.id && i.pcs !== 0);
 		if (tempBook) {
 			setPcsBookLine(tempBook.pcs);
@@ -32,9 +32,8 @@ export default function BookLine({
 			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
 		}
 		if (pcsBookLine === 0) {
-			const cloneBooks = selectedBooks.filter(
-				(selectedBook) => selectedBook.id !== book.id,
-			);
+			const cloneBooks = selectedBooks
+				.filter((selectedBook) => selectedBook.id !== book.id);
 			setSelectedBooks(cloneBooks);
 			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
 		}
@@ -58,8 +57,6 @@ export default function BookLine({
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
 			setPcsBookLine(numerableValue);
-		} else {
-			setPcsBookLine((prevPcsBookLine) => prevPcsBookLine);
 		}
 	}
 
@@ -74,7 +71,7 @@ export default function BookLine({
 					alt={book.title}
 				/>
 			</div>
-			<div className={styles.lineDecription}>
+			<div className={styles.lineDescription}>
 				<h3 className={styles.lineTitle}>{book.title}</h3>
 				<div>
 					<p className={styles.lineAuthor}>{book.author}</p>

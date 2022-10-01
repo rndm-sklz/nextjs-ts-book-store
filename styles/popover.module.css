@@ -4,7 +4,7 @@
 	align-items: center;
 }
 
-.popoverItemWrappper {
+.popoverItemWrapper {
 	display: grid;
 	grid-template-columns: auto 3fr 0.5fr 1fr;
 	align-items: center;

@@ -53,7 +53,7 @@
 	width: 110px;
 }
 
-.cartItemWrappper {
+.cartItemWrapper {
 	display: grid;
 	grid-template-columns: auto 3fr 0.5fr 1fr;
 	align-items: center;

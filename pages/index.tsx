@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
-import type { Book } from './_app';
-import styles from '../styles/home.module.css';
-import PageLayout from '../components/PageLayout';
-import FilterSelect from '../components/FilterSelect';
-import SortSelect from '../components/SortSelect';
-import ToggleView from '../components/ToggleView';
-import BooksList from '../components/BooksList';
-import ShopCart from '../components/ShopCart';
+import PageLayout from 'components/PageLayout';
+import FilterSelect from 'components/FilterSelect';
+import SortSelect from 'components/SortSelect';
+import ToggleView from 'components/ToggleView';
+import BooksList from 'components/BooksList';
+import ShopCart from 'components/ShopCart';
+import styles from 'styles/home.module.css';
+import type { Book } from 'pages/types';
 
 export default function Home({
 	books,
@@ -15,20 +15,17 @@ export default function Home({
 	selectedBooks,
 }: {
 	books: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 	selectedBooks: Book[]
 }) {
-	const [isCardView, setIsCardView] = useState<boolean>(true);
+	const [isCardView, setIsCardView] = useState(true);
 	const [booksClient, setBooksClient] = useState<Book[]>(books);
-	const authors: string[] = books.map((i) => i.author);
-	const genre: string[] = books.map((i) => i.genre);
+
 	return (
 		<PageLayout title="Home">
 			<div className={styles.filtersWrapper}>
 				<FilterSelect
 					setBooksClient={setBooksClient}
-					authors={authors}
-					genre={genre}
 					books={books}
 				/>
 				<SortSelect

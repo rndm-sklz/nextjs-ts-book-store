@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import type { Book } from '../pages/_app';
-import styles from '../styles/popover.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/popover.module.css';
 
 export default function PopoverItem({
 	selectedBook,
@@ -56,7 +56,7 @@ export default function PopoverItem({
 	}
 
 	return selectedBook.pcs > 0 ? (
-		<div className={styles.popoverItemWrappper}>
+		<div className={styles.popoverItemWrapper}>
 			<div className={styles.popoverCover}>
 				<Image
 					priority

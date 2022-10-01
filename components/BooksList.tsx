@@ -1,8 +1,8 @@
 import React from 'react';
-import BookCard from './BookCard';
-import BookLine from './BookLine';
-import type { Book } from '../pages/_app';
-import styles from '../styles/home.module.css';
+import BookCard from 'components/BookCard';
+import BookLine from 'components/BookLine';
+import type { Book } from 'pages/types';
+import styles from 'styles/home.module.css';
 
 export default function BooksList({
 	booksClient,
@@ -13,7 +13,7 @@ export default function BooksList({
 	booksClient: Book[],
 	isCardView: boolean,
 	selectedBooks: Book[],
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
 	return isCardView ? (
 		<div className={styles.cardView}>

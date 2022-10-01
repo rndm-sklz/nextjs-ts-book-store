@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import type { Book } from '../pages/_app';
-import styles from '../styles/cart.module.css';
+import type { Book } from 'pages/types';
+import styles from 'styles/cart.module.css';
 
-export default function CartTotalPrice({ selectedBooks }: {selectedBooks: Book[]}) {
-	const [totalPrice, setTotalPrice] = useState<number>(0);
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-	useEffect((): void => {
-		const sumPrice = selectedBooks.reduce((sum, el) => sum + el.price * el.pcs, 0);
-		setTotalPrice(sumPrice);
-	}, [selectedBooks, totalPrice]);
+export default function CartTotalPrice({
+	selectedBooks,
+}: {
+	selectedBooks: Book[];
+}) {
+	const [isOpen, setIsOpen] = useState(false);
+	const sumPrice = selectedBooks.reduce((sum, el) => sum + el.price * el.pcs, 0);
+
 	return (
 		<div className={styles.totalPrice}>
 			<p className={styles.totalPriceTitle}>Total price:</p>
-			<p className={styles.totalPriceNum}>${totalPrice}</p>
-			<button type="button" className={styles.payBtn} onClick={() => setIsOpen(true)}>Pay</button>
+			<p className={styles.totalPriceNum}>${sumPrice}</p>
+			<button
+				type="button"
+				className={styles.payBtn}
+				onClick={() => setIsOpen(true)}
+			>
+				Pay
+			</button>
 			{isOpen && (
 				<div className={styles.payModalBgr}>
 					<div className={styles.payModalWindow}>
@@ -27,7 +34,9 @@ export default function CartTotalPrice({ selectedBooks }: {selectedBooks: Book[]
 								alt="Pay logo"
 							/>
 						</div>
-						<button type="button" onClick={() => setIsOpen(false)}>Close</button>
+						<button type="button" onClick={() => setIsOpen(false)}>
+							Close
+						</button>
 					</div>
 				</div>
 			)}

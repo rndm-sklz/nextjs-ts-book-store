@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/layout.module.css';
+import styles from 'styles/layout.module.css';
 
 export default function PageLayout({
 	children,
@@ -21,8 +21,8 @@ export default function PageLayout({
 			</Head>
 			<header className={styles.header}>
 				<div className={styles.logo}>
-					<Link href="./">
-						<a href="/#">
+					<Link href="/">
+						<a href="/">
 							<Image
 								priority
 								src="/img/logo-pepe.png"
@@ -43,7 +43,8 @@ export default function PageLayout({
 			<main className={styles.main}>{children}</main>
 			<footer className={styles.footer}>
 				<a
-					href="https://github.com/rndm-sklz/nextjs-book-store"
+					href="https://github.com/rndm-sklz/nextjs-ts-book-store"
+					rel="noreferrer noopener"
 					aria-label="github link"
 					className={styles.githubLink}
 				>
@@ -54,7 +55,7 @@ export default function PageLayout({
 						height={32}
 					/>
 				</a>
-				<h2>ⓒ kinoplan.tech</h2>
+				<h2>ⓒ TK°</h2>
 				<div className={styles.year}>2022</div>
 			</footer>
 		</>

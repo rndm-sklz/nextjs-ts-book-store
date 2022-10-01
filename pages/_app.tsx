@@ -1,24 +1,18 @@
-import '../styles/globals.css';
 import React, { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-
-export type Book = {
-	id: number,
-	genre: string,
-	author: string,
-	cover: string,
-	title: string,
-	year: number,
-	price: number,
-	pcs: number
-}
+import type { Book } from 'pages/types';
+import 'styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-	const [selectedBooks, setSelectedBooks] = useState<Book[] | []>([]);
+	const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
 	useEffect(() => {
-		const localBooks = JSON.parse(localStorage.getItem('selectedBooks') || '');/* add ( || '') for TS */
-		if (localBooks) setSelectedBooks(localBooks);
+		const localBooks = localStorage.getItem('selectedBooks');
+		if (localBooks) {
+			const parseBooks = JSON.parse(localBooks);
+			setSelectedBooks(parseBooks);
+		}
 	}, []);
+
 	return (
 		<Component
 			// eslint-disable-next-line react/jsx-props-no-spreading

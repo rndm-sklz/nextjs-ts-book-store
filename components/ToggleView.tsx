@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/functional.module.css';
+import styles from 'styles/functional.module.css';
 
 export default function ToggleView({
 	setView,
@@ -8,10 +8,10 @@ export default function ToggleView({
 	setView: React.Dispatch<React.SetStateAction<boolean>>;
 	isCardView: boolean;
 }) {
-	function handleListView(): void {
+	function handleListView() {
 		setView(false);
 	}
-	function handleCardView(): void {
+	function handleCardView() {
 		setView(true);
 	}
 	return (

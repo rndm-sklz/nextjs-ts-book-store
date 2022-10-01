@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CartPopover from './CartPopover';
-import type { Book } from '../pages/_app';
-import styles from '../styles/functional.module.css';
+import CartPopover from 'components/CartPopover';
+import type { Book } from 'pages/types';
+import styles from 'styles/functional.module.css';
 import 'antd/lib/popover/style/index.css';
 
 export default function ShopCart({
@@ -11,7 +11,7 @@ export default function ShopCart({
 	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
 	selectedBooks: Book[];
 }) {
-	const [open, setOpen] = useState<boolean>(false);
+	const [open, setOpen] = useState(false);
 
 	const handleOpenChange = (newOpen: boolean): void => {
 		setOpen(newOpen);
