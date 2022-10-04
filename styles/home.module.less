@@ -1,3 +1,25 @@
+@import 'vars';
+@import 'mixins';
+
+//Props (Wrappers)
+
+.filtersWrapper {
+	display: flex;
+	justify-content: flex-start;
+	gap: 30px;
+	flex-wrap: wrap;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+
+.booksWrapper {
+	display: flex;
+	justify-content: center;
+	max-width: auto;
+}
+
+//Props (Card view)
+
 .cardView {
 	display: flex;
 	align-items: stretch;
@@ -10,138 +32,86 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	margin: 1rem;
-	padding: 1rem;
+	margin: 16px;
+	padding: 16px;
 	text-align: left;
-	color: inherit;
 	text-decoration: none;
-	border: 1px solid rgb(208, 208, 208);
+	border: 1px solid @wrap-border-color;
 	border-radius: 10px;
-	transition: color 0.15s ease, border-color 0.15s ease;
+	transition: color 0.15s ease, border-color 0.15s ease, transform 0.3s;
 	max-width: 300px;
+	&:hover {
+		background-color:@tertiary-green;
+		border-color: @btns-border-color;
+		cursor: pointer;
+		transform: scale(102%);
+	}
+	.cardDescription {
+		display: flex;
+		flex-direction: column;
+		justify-content: stretch;
+		h3 {
+			margin: 10px;
+			height: 69px;
+		}
+		p {
+			margin: 5px;
+		}
+		.genre {
+			font-size: 10px;
+		}
+		.author {
+			display: flex;
+			justify-content: flex-start;
+			align-items:flex-end;
+			p:nth-child(2) {
+				font-size: 11px;
+				margin: 5px;
+				padding: 0;
+			}
+		}
+		.price {
+			font-weight: 600;
+			font-size: 19px;
+		}
+		.buyBlock {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.cardPcsBlock {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				gap: 5px;
+				font-size: 12px;
+				input {
+					height: 32px;
+					width: 32px;
+					text-align: center;
+					font-family: inherit;
+				}
+				button {
+					border-radius: 50%;
+					background-color: @primary-green;
+					border: 0.5px solid @btns-border-color;
+					width: 24px;
+					height: 24px;
+				}
+				span {
+					font-size: 10px;
+					margin-left: 5px;
+				}
+			}
+			button {
+				.btns-mix(@primary-green; @secondary-green;);
+				width: 80px;
+				height: 32px;
+			}
+		}
+	}
 }
 
-.filtersWrapper {
-	display: flex;
-	justify-content: flex-start;
-	gap: 30px;
-	flex-wrap: wrap;
-	margin-left: 80px;
-	margin-top: 20px;
-}
-
-.author {
-	display: flex;
-	justify-content: flex-start;
-	align-items:flex-end;
-}
-
-.author p:nth-child(2) {
-	font-size: 0.7em;
-	margin: 5;
-	padding: 0;
-
-}
-
-.genre {
-	font-size: 0.6em;
-}
-
-.price {
-	font-weight: 600;
-	font-size: 1.17em;
-}
-
-.cardDescription {
-	display: flex;
-	flex-direction: column;
-	justify-content: stretch;
-}
-
-.cardDescription p {
-	margin: 5px;
-}
-
-.cardDescription h3 {
-	margin: 10px;
-	height: 69px;
-}
-
-.buyBlock {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.cardPcsBlock {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	gap: 5px;
-	font-size: 12px;
-}
-
-.cardPcsBlock input::-webkit-outer-spin-button,
-.cardPcsBlock input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-.cardPcsBlock input {
-	height: 32px;
-	width: 32px;
-	text-align: center;
-	font-family: inherit;
-}
-
-.cardPcsBlock button {
-	border-radius: 50%;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(117, 117, 117);
-	width: 24px;
-	height: 24px;
-}
-
-.buyLabel {
-	margin-right: 10px;
-	font-size: 0.84em;
-}
-
-.buyInput {
-	height: 32px;
-	width: 50px;
-	text-align: center;
-	font-family: inherit;
-}
-
-.buyBlock .buyBtn {
-	width: 80px;
-	height: 32px;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(117, 117, 117);
-	border-radius: 5px;
-	cursor: pointer;
-	/* margin-right: auto; */
-	transition: background-color 0.6s, transform 0.5s;
-}
-
-.buyBtn:hover {
-	background-color: rgb(108, 253, 127);
-	transform: scale(110%);
-}
-
-.buyBlock span {
-	font-size: 0.84em;
-	margin-left: 5px;
-}
-
-/* List view */
-
-.booksWrapper {
-	display: flex;
-	justify-content: center;
-	max-width: auto;
-}
+//Props (List view)
 
 .listView {
 	max-width: 1440px;
@@ -149,94 +119,72 @@
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
-
-.lineItem {
-	display: grid;
-	grid-template-columns: auto 5fr;
-	gap: 10px;
-	margin: -1px 80px 0px 80px;
-	border: 1px solid rgb(208, 208, 208);
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.lineDescription {
-	display: grid;
-	grid-template-columns: 4fr 1.5fr 1fr 0.5fr 1.5fr 0.5fr;
-	align-items: center;
-	row-gap: 0;
-	column-gap: 10px;
-}
-
-.coverLine {
-	display: flex;
-	align-items: center;
-}
-
-.lineTitle {
-	font-size: 16px;
-}
-
-.lineAuthor {
-	font-size: 12px;
-	font-weight: 600;
-}
-
-.lineAuthor + p {
-	font-size: 12px;
-}
-
-.lineGenre {
-	font-size: 12px;
-}
-
-.linePrice {
-	font-weight: 600;
-	white-space: nowrap;
-}
-
-.linePcsBlock {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	gap: 5px;
-	font-size: 12px;
-}
-
-.linePcsBlock input::-webkit-outer-spin-button,
-.linePcsBlock input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-.linePcsBlock input {
-	height: 32px;
-	width: 32px;
-	text-align: center;
-	font-family: inherit;
-}
-
-.linePcsBlock button {
-	border-radius: 50%;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(117, 117, 117);
-	width: 24px;
-	height: 24px;
-}
-
-.lineBuyBtn {
-	width: 80px;
-	height: 32px;
-	margin-left: auto;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(117, 117, 117);
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.6s, transform 0.5s;
-}
-
-.lineBuyBtn:hover {
-	background-color: rgb(108, 253, 127);
-	transform: scale(110%);
+	.lineItem {
+		display: grid;
+		grid-template-columns: auto 5fr;
+		gap: 10px;
+		margin: -1px 80px 0px 80px;
+		border: 1px solid @wrap-border-color;
+		padding-left: 10px;
+		padding-right: 10px;
+		.coverLine {
+			display: flex;
+			align-items: center;
+		}
+		.lineDescription {
+			display: grid;
+			grid-template-columns: 4fr 1.5fr 1fr 0.5fr 1.5fr 0.5fr;
+			align-items: center;
+			row-gap: 0;
+			column-gap: 10px;
+			.lineTitle {
+				font-size: 16px;
+				margin: 0px;
+			}
+			.lineAuthor {
+				font-size: 14px;
+				font-weight: 600;
+				margin-top: 5px;
+				margin-bottom: 5px;
+				& + p {
+					font-size: 12px;
+					margin-top: 5px;
+					margin-bottom: 5px;
+				}
+			}
+			.lineGenre {
+				font-size: 12px;
+			}
+			.linePrice {
+				font-weight: 600;
+				white-space: nowrap;
+			}
+			.linePcsBlock {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				gap: 5px;
+				font-size: 12px;
+				input {
+					height: 32px;
+					width: 32px;
+					text-align: center;
+					font-family: inherit;
+				}
+				button {
+					border-radius: 50%;
+					background-color: @primary-green;
+					border: 0.5px solid @btns-border-color;
+					width: 24px;
+					height: 24px;
+				}
+			}
+			.lineBuyBtn {
+				.btns-mix(@primary-green; @secondary-green;);
+				width: 80px;
+				height: 32px;
+				margin-left: auto;
+			}
+		}
+	}
 }

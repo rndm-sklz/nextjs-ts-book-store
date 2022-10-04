@@ -1,63 +1,59 @@
-.header {
+@import 'vars';
+
+//Mixin
+
+.h-f-block{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	height: 60px;
 	width: 100%;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(208, 208, 208);
+	background-color: @primary-green;
+	border: 0.5px solid @wrap-border-color;
 }
 
-.logo {
-	width: 40px;
-	height: 39px;
-	margin-left: 80px;
-}
+//Props
 
-.title {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin: 0;
-	padding: 0;
-}
-
-.title h1 {
-	padding: 0;
-	margin: 0;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.empty {
-	width: 40px;
-	height: 39px;
-	margin-right: 80px;
+.header {
+	.h-f-block;
+	.logo {
+		width: 40px;
+		height: 39px;
+		margin-left: 80px;
+	}
+	.title {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		h1 {
+			padding: 0;
+			margin: 0;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+	.empty {
+		width: 40px;
+		height: 39px;
+		margin-right: 80px;
+	}
 }
 
 .footer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+	.h-f-block;
 	margin-top: auto;
-	height: 60px;
-	width: 100%;
-	background-color: rgb(189, 255, 198);
-	border: 0.5px solid rgb(208, 208, 208);
-}
-
-.year {
-	width: 40px;
-	margin-right: 80px;
-}
-
-.githubLink {
-	margin-left: 80px;
-}
-
-.footer h2 {
-	font-size: 16px;
+	.year {
+		width: 40px;
+		margin-right: 80px;
+	}
+	.githubLink {
+		margin-left: 80px;
+	}
+	h2 {
+		font-size: 16px;
+	}
 }
