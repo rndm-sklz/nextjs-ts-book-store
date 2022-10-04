@@ -25,17 +25,21 @@ export default function BookLine({
 	function handlerBuyBook() {
 		if (pcsBookLine >= 0) {
 			const cloneBooks = { ...book, pcs: pcsBookLine };
-			const buyBooks = selectedBooks
-				.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
-				.concat([cloneBooks]);
-			setSelectedBooks(buyBooks);
-			localStorage.setItem('selectedBooks', JSON.stringify(buyBooks));
+			setSelectedBooks((prev) => {
+				const temp = prev
+					.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
+					.concat([cloneBooks]);
+				localStorage.setItem('selectedBooks', JSON.stringify(temp));
+				return temp;
+			});
 		}
 		if (pcsBookLine === 0) {
-			const cloneBooks = selectedBooks
-				.filter((selectedBook) => selectedBook.id !== book.id);
-			setSelectedBooks(cloneBooks);
-			localStorage.setItem('selectedBooks', JSON.stringify(cloneBooks));
+			setSelectedBooks((prev) => {
+				const temp = prev
+					.filter((selectedBook) => selectedBook.id !== book.id);
+				localStorage.setItem('selectedBooks', JSON.stringify(temp));
+				return temp;
+			});
 		}
 	}
 
