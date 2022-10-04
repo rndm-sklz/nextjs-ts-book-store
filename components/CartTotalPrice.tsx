@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import type { Book } from 'pages/types';
-import styles from 'styles/cart.module.css';
+import styles from 'styles/cart.module.less';
 
 export default function CartTotalPrice({
 	selectedBooks,

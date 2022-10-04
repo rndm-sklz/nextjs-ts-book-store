@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Popover } from 'antd';
 import PopoverListItems from 'components/PopoverListItems';
 import type { Book } from 'pages/types';
-import styles from 'styles/popover.module.css';
+import styles from 'styles/popover.module.less';
 
 export default function CartPopover({
 	open,

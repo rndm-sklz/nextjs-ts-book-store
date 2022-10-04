@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Book } from 'pages/types';
-import styles from 'styles/functional.module.css';
+import styles from 'styles/functional.module.less';
 
 export default function FilterSelect({
 	setBooksClient,

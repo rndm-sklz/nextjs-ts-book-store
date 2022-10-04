@@ -6,7 +6,7 @@ import SortSelect from 'components/SortSelect';
 import ToggleView from 'components/ToggleView';
 import BooksList from 'components/BooksList';
 import ShopCart from 'components/ShopCart';
-import styles from 'styles/home.module.css';
+import styles from 'styles/home.module.less';
 import type { Book } from 'pages/types';
 
 export default function Home({

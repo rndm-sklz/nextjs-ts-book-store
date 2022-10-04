@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import type { Book } from 'pages/types';
-import styles from 'styles/popover.module.css';
+import styles from 'styles/popover.module.less';
 
 export default function PopoverItem({
 	selectedBook,

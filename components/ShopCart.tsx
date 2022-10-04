@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CartPopover from 'components/CartPopover';
 import type { Book } from 'pages/types';
-import styles from 'styles/functional.module.css';
+import styles from 'styles/functional.module.less';
 import 'antd/lib/popover/style/index.css';
 
 export default function ShopCart({

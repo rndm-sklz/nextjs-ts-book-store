@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import type { Book } from 'pages/types';
-import styles from 'styles/home.module.css';
+import styles from 'styles/home.module.less';
 
 export default function BookLine({
 	book,

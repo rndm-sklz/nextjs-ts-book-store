@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { Book } from 'pages/types';
 import CartItem from 'components/CartItem';
 import CartTotalPrice from 'components/CartTotalPrice';
-import styles from 'styles/cart.module.css';
+import styles from 'styles/cart.module.less';
 
 export default function CartList({
 	selectedBooks,

@@ -2,7 +2,7 @@ import React from 'react';
 import BookCard from 'components/BookCard';
 import BookLine from 'components/BookLine';
 import type { Book } from 'pages/types';
-import styles from 'styles/home.module.css';
+import styles from 'styles/home.module.less';
 
 export default function BooksList({
 	booksClient,

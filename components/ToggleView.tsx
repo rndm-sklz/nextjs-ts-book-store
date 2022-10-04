@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from 'styles/functional.module.css';
+import styles from 'styles/functional.module.less';
 
 export default function ToggleView({
 	setView,

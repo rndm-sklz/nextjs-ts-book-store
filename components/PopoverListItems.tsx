@@ -1,7 +1,7 @@
 import React from 'react';
 import PopoverItem from 'components/PopoverItem';
 import type { Book } from 'pages/types';
-import styles from 'styles/popover.module.css';
+import styles from 'styles/popover.module.less';
 
 export default function PopoverListItem({
 	setSelectedBooks,
