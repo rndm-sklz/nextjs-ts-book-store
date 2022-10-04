@@ -28,7 +28,7 @@ export default function CartTotalPrice({
 						<p>Payment successfully completed!</p>
 						<div className={styles.logoModalWindow}>
 							<Image
-								priority
+								// priority
 								src="/img/cash.png"
 								layout="fill"
 								alt="Pay logo"

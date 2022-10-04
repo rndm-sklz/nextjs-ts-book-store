@@ -27,7 +27,7 @@ export default function FilterSelect({
 
 	function authorFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const authorValue = e.target.value;
-		if (authorValue === 'all' || authorValue === 'selected') {
+		if (authorValue === 'all') {
 			setBooksClient(books);
 		} else {
 			setBooksClient(books.filter((i) => i.author === authorValue));
@@ -36,7 +36,7 @@ export default function FilterSelect({
 
 	function genreFilter(e: React.ChangeEvent<HTMLSelectElement>) {
 		const genreValue = e.target.value;
-		if (genreValue === 'all' || genreValue === 'selected') {
+		if (genreValue === 'all') {
 			setBooksClient(books);
 		} else {
 			setBooksClient(books.filter((i) => i.genre === genreValue));
@@ -54,9 +54,6 @@ export default function FilterSelect({
 				className={styles.select}
 				onChange={genreFilter}
 			>
-				<option value="selected" className={styles.defaultOption}>
-					by genre:
-				</option>
 				<option value="all">-All-</option>
 				{genresOptions}
 			</select>
@@ -66,9 +63,6 @@ export default function FilterSelect({
 				className={styles.select}
 				onChange={authorFilter}
 			>
-				<option value="selected" className={styles.defaultOption}>
-					by author:
-				</option>
 				<option value="all">-All-</option>
 				{authorsOptions}
 			</select>

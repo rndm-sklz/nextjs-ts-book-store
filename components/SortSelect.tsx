@@ -66,7 +66,6 @@ export default function SortSelect({
 				className={styles.select}
 				onChange={sortChange}
 			>
-				<option value="selected">sort by</option>
 				<option value="authorAZ">author (A-Z)</option>
 				<option value="authorZA">author (Z-A)</option>
 				<option value="yearAsc">year (ascending)</option>

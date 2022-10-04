@@ -10,7 +10,7 @@ export default function PopoverListItem({
 	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
 	selectedBooks: Book[];
 }) {
-	return selectedBooks[0] ? (
+	return selectedBooks.length ? (
 		<div className={styles.popoverList}>
 			{selectedBooks.map((selectedBook) => (
 				<PopoverItem
