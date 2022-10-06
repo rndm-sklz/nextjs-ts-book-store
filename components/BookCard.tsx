@@ -42,6 +42,17 @@ export default function BookCard({
 	}
 
 	function decr() {
+		/* Здесь и в incr, Можно упростить логику,
+		чтобы не сетить предыдущее значение при невыполнении условия.
+		В decr условие pcsBookCard <= 99 тоже не имеет необходимости
+
+		Также нет необходимости делать каст к числу, т.к. тип твоего useState
+		и так number
+
+		if (pcsBookCard >= 1) {
+			setPcsBookCard((prev) => prev - 1);
+		}
+		*/
 		setPcsBookCard((prevPcsBookCard) => (prevPcsBookCard >= 1 && prevPcsBookCard <= 99
 			? +prevPcsBookCard - 1
 			: prevPcsBookCard
