@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Image from 'next/image';
+import Context from 'components/Context';
 import type { Book } from 'pages/types';
 import styles from 'styles/popover.module.less';
 
 export default function PopoverItem({
 	selectedBook,
-	selectedBooks,
-	setSelectedBooks,
 }: {
 	selectedBook: Book;
-	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[] | []>>;
 }) {
+	const { selectedBooks, setSelectedBooks } = useContext(Context);
 	let { pcs }: {pcs: number} = selectedBook;
 
-	useEffect((): void => {
+	useEffect(() => {
 		if (selectedBook.pcs <= 0) {
 			setSelectedBooks((prev) => prev.filter((i) => i.id !== selectedBook.id));
 		}

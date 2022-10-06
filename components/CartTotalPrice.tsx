@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Loader from 'components/Loader';
-import type { Book } from 'pages/types';
+import Context from 'components/Context';
 import styles from 'styles/cart.module.less';
 
-export default function CartTotalPrice({
-	selectedBooks,
-}: {
-	selectedBooks: Book[];
-}) {
+export default function CartTotalPrice() {
+	const {
+		selectedBooks,
+	} = React.useContext(Context);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLoad, setLoad] = useState(false);
 	const sumPrice = selectedBooks.reduce((sum, el) => sum + el.price * el.pcs, 0);

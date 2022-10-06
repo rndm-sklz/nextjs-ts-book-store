@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Image from 'next/image';
 import type { Book } from 'pages/types';
+import Context from 'components/Context';
 import styles from 'styles/cart.module.less';
 
-export default function CartItem({
-	selectedBook,
-	setSelectedBooks,
-}: {
-	selectedBook: Book;
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
-}) {
+export default function CartItem({ selectedBook }: { selectedBook: Book }) {
 	let { pcs } = selectedBook;
-
+	const { setSelectedBooks } = useContext(Context);
 	useEffect(() => {
 		if (selectedBook.pcs <= 0) {
 			setSelectedBooks((prev) => {

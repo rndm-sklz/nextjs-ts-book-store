@@ -8,3 +8,9 @@ export type Book = {
 	price: number,
 	pcs: number
 }
+export interface IContext {
+	selectedBooks: Book[],
+	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>,
+	booksClient: Book[];
+	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>,
+}

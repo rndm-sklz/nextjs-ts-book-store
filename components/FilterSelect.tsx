@@ -1,14 +1,14 @@
 import React from 'react';
 import type { Book } from 'pages/types';
+import Context from 'components/Context';
 import styles from 'styles/functional.module.less';
 
 export default function FilterSelect({
-	setBooksClient,
 	books,
 }: {
-	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>;
 	books: Book[];
 }) {
+	const { setBooksClient } = React.useContext(Context);
 	const authorsSet = Array.from(new Set(books.map((i) => i.author)));
 
 	const authorsOptions = authorsSet.map((author) => (

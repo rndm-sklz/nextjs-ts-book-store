@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Image from 'next/image';
+import Context from 'components/Context';
 import type { Book } from 'pages/types';
 import styles from 'styles/home.module.less';
 
 export default function BookLine({
 	book,
-	selectedBooks,
-	setSelectedBooks,
 }: {
 	book: Book;
-	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
+	const { selectedBooks, setSelectedBooks } = useContext(Context);
 	const [pcsBookLine, setPcsBookLine] = useState(book.pcs);
 
 	useEffect(() => {

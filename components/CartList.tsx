@@ -1,17 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import type { Book } from 'pages/types';
 import CartItem from 'components/CartItem';
 import CartTotalPrice from 'components/CartTotalPrice';
+import Context from 'components/Context';
 import styles from 'styles/cart.module.less';
 
-export default function CartList({
-	selectedBooks,
-	setSelectedBooks,
-}: {
-	selectedBooks: Book[];
-	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
-}) {
+export default function CartList() {
+	const {
+		selectedBooks,
+	} = React.useContext(Context);
 	return selectedBooks.length ? (
 		<div className={styles.cartList}>
 			<div className={styles.inCart}>
@@ -28,10 +25,9 @@ export default function CartList({
 				<CartItem
 					key={selectedBook.id}
 					selectedBook={selectedBook}
-					setSelectedBooks={setSelectedBooks}
 				/>
 			))}
-			<CartTotalPrice selectedBooks={selectedBooks} />
+			<CartTotalPrice />
 		</div>
 	) : (
 		<div className={styles.isEmptyWrapper}>
