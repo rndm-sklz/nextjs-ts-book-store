@@ -4,6 +4,11 @@ import Context from 'components/Context';
 import type { Book } from 'pages/types';
 import styles from 'styles/home.module.less';
 
+/*
+	Компонент очень схож с BookCard, можно вынести общую логику отдельно, чтобы избежать
+	дублирование кода и рендерить, к примеру, в зависимости от флага isCard, который будет
+	определять вид компонента
+*/
 export default function BookLine({
 	book,
 }: {

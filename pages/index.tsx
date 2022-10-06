@@ -23,6 +23,8 @@ export default function Home({
 	const [booksClient, setBooksClient] = useState<Book[]>(books);
 
 	return (
+		// Лучше не отключать это правило, а обернуть в useMemo, как пишет линтер
+		// Пример: https://stackoverflow.com/a/71256507
 		// eslint-disable-next-line react/jsx-no-constructed-context-values
 		<Context.Provider value={{
 			selectedBooks, setSelectedBooks, booksClient, setBooksClient,
