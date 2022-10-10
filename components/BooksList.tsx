@@ -1,30 +1,32 @@
 import React from 'react';
-import BookCard from 'components/BookCard';
-import BookLine from 'components/BookLine';
-import Context from 'components/Context';
+import BooksListItem from 'components/BooksListItem';
+import type { Book } from 'pages/types';
 import styles from 'styles/home.module.less';
 
 export default function BooksList({
+	booksClient,
 	isCardView,
 }: {
+	booksClient: Book[],
 	isCardView: boolean,
 }) {
-	const { booksClient } = React.useContext(Context);
 	return isCardView ? (
 		<div className={styles.cardView}>
 			{booksClient.map((book) => (
-				<BookCard
+				<BooksListItem
 					book={book}
 					key={book.id}
+					isCardView={isCardView}
 				/>
 			))}
 		</div>
 	) : (
 		<div className={styles.listView}>
 			{booksClient.map((book) => (
-				<BookLine
+				<BooksListItem
 					book={book}
 					key={book.id}
+					isCardView={isCardView}
 				/>
 			))}
 		</div>

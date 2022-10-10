@@ -26,6 +26,7 @@
 	"plugins": ["import", "react", "jsx-a11y", "eslint-plugin-import", "@typescript-eslint"],
 	"rules": {
 		"indent": ["error", "tab"],
+		"react/jsx-props-no-spreading": "off",
 		"react/jsx-filename-extension": [
 			2,
 			{ "extensions": [".js", ".jsx", ".ts", ".tsx"] }

@@ -42,17 +42,15 @@ export default function BookLine({
 	}
 
 	function decr() {
-		setPcsBookLine((prevPcsBookLine) => (prevPcsBookLine >= 1 && prevPcsBookLine <= 99
-			? +prevPcsBookLine - 1
-			: prevPcsBookLine
-		));
+		if (pcsBookLine >= 1) {
+			setPcsBookLine((prev) => prev - 1);
+		}
 	}
 
 	function incr() {
-		setPcsBookLine((prevPcsBookLine) => (prevPcsBookLine >= 0 && prevPcsBookLine <= 98
-			? +prevPcsBookLine + 1
-			: prevPcsBookLine
-		));
+		if (pcsBookLine >= 0 && pcsBookLine <= 98) {
+			setPcsBookLine((prev) => prev + 1);
+		}
 	}
 
 	function userInput(e: React.ChangeEvent<HTMLInputElement>) {

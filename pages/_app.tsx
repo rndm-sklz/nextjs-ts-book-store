@@ -15,7 +15,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<Component
-			// eslint-disable-next-line react/jsx-props-no-spreading
 			{...pageProps}
 			selectedBooks={selectedBooks}
 			setSelectedBooks={setSelectedBooks}

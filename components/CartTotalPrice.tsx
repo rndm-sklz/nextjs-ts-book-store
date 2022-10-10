@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Loader from 'components/Loader';
 import Context from 'components/Context';
@@ -10,7 +10,8 @@ export default function CartTotalPrice() {
 	} = React.useContext(Context);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLoad, setLoad] = useState(false);
-	const sumPrice = selectedBooks.reduce((sum, el) => sum + el.price * el.pcs, 0);
+	const sumPrice = useMemo(() => selectedBooks
+		.reduce((sum, el) => sum + el.price * el.pcs, 0), [selectedBooks]);
 
 	function loadOpen() {
 		setLoad(true);

@@ -22,19 +22,23 @@ export default function Home({
 	const [isCardView, setIsCardView] = useState(true);
 	const [booksClient, setBooksClient] = useState<Book[]>(books);
 
+	const homeContext = React.useMemo(
+		() => ({ selectedBooks, setSelectedBooks }),
+		[selectedBooks, setSelectedBooks],
+	);
+
 	return (
-		// eslint-disable-next-line react/jsx-no-constructed-context-values
-		<Context.Provider value={{
-			selectedBooks, setSelectedBooks, booksClient, setBooksClient,
-		}}
-		>
+		<Context.Provider value={homeContext}>
 			<PageLayout title="Home">
 				<div className={styles.filtersWrapper}>
 					<FilterSelect
 						books={books}
+						setBooksClient={setBooksClient}
 					/>
 					<SortSelect
 						books={books}
+						setBooksClient={setBooksClient}
+						booksClient={booksClient}
 					/>
 					<ToggleView
 						setView={setIsCardView}
@@ -45,6 +49,7 @@ export default function Home({
 				<div className={styles.booksWrapper}>
 					<BooksList
 						isCardView={isCardView}
+						booksClient={booksClient}
 					/>
 				</div>
 			</PageLayout>

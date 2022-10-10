@@ -11,9 +11,12 @@ export default function Cart({
 	selectedBooks: Book[];
 	setSelectedBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }) {
+	const cartContext = React.useMemo(
+		() => ({ selectedBooks, setSelectedBooks }),
+		[selectedBooks, setSelectedBooks],
+	);
 	return (
-		// eslint-disable-next-line react/jsx-no-constructed-context-values
-		<Context.Provider value={{ selectedBooks, setSelectedBooks }}>
+		<Context.Provider value={cartContext}>
 			<PageLayout title="Shopping cart">
 				<CartList />
 			</PageLayout>

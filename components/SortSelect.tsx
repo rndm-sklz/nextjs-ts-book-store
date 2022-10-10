@@ -1,14 +1,16 @@
 import React from 'react';
 import type { Book } from 'pages/types';
-import Context from 'components/Context';
 import styles from 'styles/functional.module.less';
 
 export default function SortSelect({
+	booksClient,
+	setBooksClient,
 	books,
 }: {
+	booksClient: Book[];
+	setBooksClient: React.Dispatch<React.SetStateAction<Book[]>>;
 	books: Book[];
 }) {
-	const { booksClient, setBooksClient } = React.useContext(Context);
 	function sortChange(e: React.ChangeEvent<HTMLSelectElement>) {
 		const sortValue = e.target.value;
 		if (sortValue === 'yearAsc') {

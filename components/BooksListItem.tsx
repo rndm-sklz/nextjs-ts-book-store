@@ -6,23 +6,25 @@ import styles from 'styles/home.module.less';
 
 export default function BookCard({
 	book,
+	isCardView,
 }: {
 	book: Book;
+	isCardView: boolean,
 }) {
 	const { selectedBooks, setSelectedBooks } = useContext(Context);
-	const [pcsBookCard, setPcsBookCard] = useState(book.pcs);
+	const [pcsBook, setPcsBook] = useState(book.pcs);
 
 	useEffect(() => {
 		const tempBook = selectedBooks.find((i) => i.id === book.id);
 		if (tempBook) {
-			setPcsBookCard(tempBook.pcs);
+			setPcsBook(tempBook.pcs);
 			localStorage.setItem('selectedBooks', JSON.stringify(selectedBooks));
 		}
 	}, [selectedBooks, book]);
 
 	function handlerBuyBook() {
-		if (pcsBookCard >= 0) {
-			const cloneBooks = { ...book, pcs: pcsBookCard };
+		if (pcsBook >= 0) {
+			const cloneBooks = { ...book, pcs: pcsBook };
 			setSelectedBooks((prev) => {
 				const temp = prev
 					.filter((selectedBook) => selectedBook.id !== cloneBooks.id)
@@ -31,7 +33,7 @@ export default function BookCard({
 				return temp;
 			});
 		}
-		if (pcsBookCard === 0) {
+		if (pcsBook === 0) {
 			setSelectedBooks((prev) => {
 				const temp = prev
 					.filter((selectedBook) => selectedBook.id !== book.id);
@@ -42,25 +44,25 @@ export default function BookCard({
 	}
 
 	function decr() {
-		if (pcsBookCard >= 1) {
-			setPcsBookCard((prev) => prev - 1);
+		if (pcsBook >= 1) {
+			setPcsBook((prev) => prev - 1);
 		}
 	}
 
 	function incr() {
-		if (pcsBookCard >= 0 && pcsBookCard <= 98) {
-			setPcsBookCard((prev) => prev + 1);
+		if (pcsBook >= 0 && pcsBook <= 98) {
+			setPcsBook((prev) => prev + 1);
 		}
 	}
 
 	function userInput(e: React.ChangeEvent<HTMLInputElement>) {
 		const numerableValue = +e.target.value;
 		if (typeof numerableValue === 'number' && !Number.isNaN(numerableValue)) {
-			setPcsBookCard(numerableValue);
+			setPcsBook(numerableValue);
 		}
 	}
 
-	return (
+	return isCardView ? (
 		<div className={styles.card}>
 			<Image
 				priority
@@ -88,7 +90,7 @@ export default function BookCard({
 							minLength={1}
 							maxLength={2}
 							required
-							value={pcsBookCard}
+							value={pcsBook}
 							onChange={userInput}
 							placeholder="0"
 						/>
@@ -105,6 +107,53 @@ export default function BookCard({
 						Buy
 					</button>
 				</div>
+			</div>
+		</div>
+	) : (
+		<div className={styles.lineItem}>
+			<div className={styles.coverLine}>
+				<Image
+					priority
+					src={book.cover}
+					width={30}
+					height={45}
+					alt={book.title}
+				/>
+			</div>
+			<div className={styles.lineDescription}>
+				<h3 className={styles.lineTitle}>{book.title}</h3>
+				<div>
+					<p className={styles.lineAuthor}>{book.author}</p>
+					<p>{book.year}</p>
+				</div>
+				<p className={styles.lineGenre}>{book.genre}</p>
+				<p className={styles.linePrice}>${book.price}</p>
+				<div className={styles.linePcsBlock}>
+					<span>Quantity:</span>
+					<button type="button" onClick={decr}>
+						-
+					</button>
+					<input
+						type="text"
+						minLength={1}
+						maxLength={2}
+						required
+						value={pcsBook}
+						onChange={userInput}
+						placeholder="0"
+					/>
+					<button type="button" onClick={incr}>
+						+
+					</button>
+					<span>pcs</span>
+				</div>
+				<button
+					type="button"
+					className={styles.lineBuyBtn}
+					onClick={handlerBuyBook}
+				>
+					Buy
+				</button>
 			</div>
 		</div>
 	);
