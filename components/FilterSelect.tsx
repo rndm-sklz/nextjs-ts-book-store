@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 import styles from 'styles/functional.module.less';
 
 export default function FilterSelect({

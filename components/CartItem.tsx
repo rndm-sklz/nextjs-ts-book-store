@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import Image from 'next/image';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 import Context from 'components/Context';
 import styles from 'styles/cart.module.less';
 

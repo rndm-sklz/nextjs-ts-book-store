@@ -2,7 +2,7 @@ import React from 'react';
 import CartList from 'components/CartList';
 import Context from 'components/Context';
 import PageLayout from 'components/PageLayout';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 
 export default function Cart({
 	selectedBooks,

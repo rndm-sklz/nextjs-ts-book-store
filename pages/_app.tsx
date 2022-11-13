@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 import 'styles/globals.less';
 
 export default function MyApp({ Component, pageProps }: AppProps) {

@@ -8,7 +8,7 @@ import BooksList from 'components/BooksList';
 import ShopCart from 'components/ShopCart';
 import Context from 'components/Context';
 import styles from 'styles/home.module.less';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 
 export default function Home({
 	books,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IContext } from 'pages/types';
+import { IContext } from 'types/types';
 
 const Context = React.createContext<IContext>({} as IContext);
 

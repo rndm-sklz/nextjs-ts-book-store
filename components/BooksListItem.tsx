@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Image from 'next/image';
 import Context from 'components/Context';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 import styles from 'styles/home.module.less';
 
 export default function BookCard({

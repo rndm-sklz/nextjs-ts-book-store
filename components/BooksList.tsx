@@ -1,6 +1,6 @@
 import React from 'react';
 import BooksListItem from 'components/BooksListItem';
-import type { Book } from 'pages/types';
+import type { Book } from 'types/types';
 import styles from 'styles/home.module.less';
 
 export default function BooksList({
